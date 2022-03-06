@@ -1,0 +1,18 @@
+<h2 class="heading">ユーザー編集</h2>
+
+<%= form_with model: @end_user, url: admin_end_user_path, local: true do |f| %>
+  <div class="form">
+    <%= f.label :ユーザー名, class: "form__label" %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="form">
+    <%= f.label :ステータス, class: "form__label" %>
+    <%= f.radio_button :is_deleted, false %>
+    <%= f.label :ステータス, "有効", value: false %>
+    <%= f.radio_button :is_deleted, true %>
+    <%= f.label :ステータス, "退会", value: true %>
+  </div>
+  <div class="form">
+    <%= f.submit "変更を保存", class: "form__btn" %>
+  </div>
+<% end %>

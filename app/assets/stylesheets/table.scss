@@ -1,0 +1,14 @@
+.table {
+  border-collapse: collapse;
+  margin-left: 10%;
+  margin-top: 10px;
+  
+  &__row {
+    border-bottom: solid 1px #777777;
+  }
+  &__item {
+    width: 10%;
+    text-align: center;
+    padding: 15px 0;
+  }
+}
