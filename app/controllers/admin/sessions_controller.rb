@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::SessionsController < Devise::SessionsController
+  skip_before_action :require_no_authentication, only: [:new]
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -19,6 +20,14 @@ class Admin::SessionsController < Devise::SessionsController
   # end
 
   # protected
+  
+  def after_sign_in_path_for(resource)
+    admin_end_users_path
+  end
+
+  def after_sign_out_path_for(resource)
+    new_admin_session_path
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params
