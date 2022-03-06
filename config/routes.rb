@@ -5,6 +5,10 @@ Rails.application.routes.draw do
     sessions: 'admin/sessions'
   }
   
+  namespace :admin do
+    resources :end_users, only: [:index, :edit, :update]
+  end
+  
   # 顧客用
   devise_for :end_users, skip: [:passwords], controllers: {
     registrations: "public/registrations",

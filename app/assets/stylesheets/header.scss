@@ -1,0 +1,25 @@
+.header {
+  width: 100%;
+  display: flex;
+  background-color: gray;
+  
+  %__link {
+    padding: 20px;
+    list-style: none;
+  }
+  
+  &__link {
+    @extend %__link;
+    justify-content: space-between;
+    
+    &--logo {
+      @extend %__link;
+      margin-right: auto;
+    }
+    &--text {
+      @extend %__link;
+      color: #FFFFEE;
+      text-decoration: none;
+    }
+  }
+}
