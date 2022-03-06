@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   # 管理者用
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
-    sessions: 'admin/sessions'
+    sessions: "admin/sessions"
   }
   
   namespace :admin do
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # 顧客用
   devise_for :end_users, skip: [:passwords], controllers: {
     registrations: "public/registrations",
-    sessions: 'public/sessions'
+    sessions: "public/sessions"
   }
   
   scope module: :public do
