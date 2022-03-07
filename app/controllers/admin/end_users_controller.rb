@@ -12,7 +12,6 @@ class Admin::EndUsersController < ApplicationController
     @end_user = EndUser.find(params[:id])
     @end_user.update(end_user_params)
     redirect_to admin_end_users_path
-    
   end
   
   private 
