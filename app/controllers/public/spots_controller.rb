@@ -14,6 +14,29 @@ class Public::SpotsController < ApplicationController
       render "new"
     end
   end
+  
+  def edit
+    @spot = Spot.find(params[:id])
+    @tag_list = @spot.tags.pluck(:name).join(" ")
+  end
+  
+  def update
+    @spot = Spot.find(params[:id])
+    tag_list = params[:spot][:tag_ids].split(/[[:blank:]]+/).select(&:present?)
+    if @spot.update(spot_params)
+      @spot.save_tags(tag_list)
+      flash[:notice] = "投稿を編集しました"
+      redirect_to mypage_end_users_path
+    else
+      render "edit"
+    end
+  end
+  
+  def destroy
+    @spot = Spot.find(params[:id])
+    @spot.destroy
+    redirect_to mypage_end_users_path
+  end
 
   private
 

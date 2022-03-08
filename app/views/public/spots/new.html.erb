@@ -1,2 +1,4 @@
 <h2 class="heading">新規投稿</h2>
-<%= render "form", spot: @spot %>
+<%= form_with model: @spot, url: spots_path, local: true do |f| %>
+    <%= render :partial => "form", :locals => {:f => f} %>
+<% end %>
