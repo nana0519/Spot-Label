@@ -1,0 +1,21 @@
+<%= form_with model: spot, url: spots_path, local: true do |f| %>
+  <div class="form">
+    <%= f.label :画像, class: "form__label" %>
+    <%= f.file_field :spot_images, multiple: true %>
+  </div>
+  <div class="form">
+    <%= f.label :紹介, class: "form__label" %>
+    <%= f.text_area :introduction %>
+  </div>
+  <div class="form">
+    <%= f.label :住所, class: "form__label" %>
+    <%= f.text_field :address, :placeholder => "都道府県から記入をお願いします" %>
+  </div>
+  <div class="form">
+    <%= f.label :タグ, class: "form__label" %>
+    <%= f.text_field :tag_ids, :placeholder => "（例）店名　ペット可　駐車場あり" %>
+  </div>
+  <div class="form">
+    <%= f.submit "保存", class: "form__btn" %>
+  </div>
+<% end %>
