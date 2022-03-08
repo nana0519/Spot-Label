@@ -9,11 +9,11 @@
   </div>
   <div class="form">
     <%= f.label :住所, class: "form__label" %>
-    <%= f.text_field :address %>
+    <%= f.text_field :address, :placeholder => "都道府県から記入をお願いします" %>
   </div>
   <div class="form">
     <%= f.label :タグ, class: "form__label" %>
-    <%= f.text_field :tag_ids %>
+    <%= f.text_field :tag_ids, :placeholder => "（例）店名　ペット可　駐車場あり" %>
   </div>
   <div class="form">
     <%= f.submit "保存", class: "form__btn" %>

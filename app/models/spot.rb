@@ -11,4 +11,5 @@ class Spot < ApplicationRecord
       self.tags << new_tag
     end
   end
+  
 end

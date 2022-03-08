@@ -1,5 +1,6 @@
 <header>
   <ul class="header">
+    
     <!--end_userログイン後-->
     <% if end_user_signed_in? %>
       <li class="header__link--logo">
@@ -9,12 +10,14 @@
         <% end %>
       </li>
       <li class="header__link">
-        <!--マイページのリンクつける-->
-        <i class="fa-solid fa-house-chimney"></i>
+        <%= link_to mypage_end_users_path do %>
+          <i class="fa-solid fa-house-chimney"></i>
+        <% end %>
       </li>
       <li class="header__link">
-        <!--新規投稿のリンクつける-->
-        <i class="fa-solid fa-circle-plus"></i>
+        <%= link_to new_spot_path do %>
+          <i class="fa-solid fa-circle-plus"></i>
+        <% end %>
       </li>
       <li class="header__link">
         <!--通知のリンクつける-->
@@ -25,6 +28,7 @@
           <i class="fa-solid fa-right-from-bracket"></i>
         <% end %>
       </li>
+      
     <!--管理者ログイン後-->
     <% elsif admin_signed_in? %>
       <li class="header__link--logo">
@@ -38,6 +42,7 @@
           <i class="fa-solid fa-right-from-bracket"></i>
         <% end %>
       </li>
+      
     <!--ログイン前（共通）-->
     <% else %>
       <li class="header__link--logo">
@@ -51,5 +56,6 @@
         <%= link_to "ログイン", new_end_user_session_path, class: "header__link--text" %>
       </li>
     <% end %>
+    
   </ul>
 </header>
