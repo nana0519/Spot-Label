@@ -5,4 +5,6 @@ class EndUser < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
   has_many :spots, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  
 end

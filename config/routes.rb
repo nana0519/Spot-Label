@@ -17,10 +17,14 @@ Rails.application.routes.draw do
   
   scope module: :public do
     root to: "homes#top"
-    resources :spots
+    resources :spots do
+      resource :favorites, only: [:create, :destroy]
+    end
+      
     resources :end_users, only: [:show, :edit, :update] do
       collection do
         get :mypage
+        get :collection
         get :unsubscribe
         patch :withdraw
       end
