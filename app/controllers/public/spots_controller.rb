@@ -15,6 +15,10 @@ class Public::SpotsController < ApplicationController
     end
   end
   
+  def index
+    @spots = Spot.all
+  end
+  
   def edit
     @spot = Spot.find(params[:id])
     @tag_list = @spot.tags.pluck(:name).join(" ")

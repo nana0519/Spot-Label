@@ -2,10 +2,15 @@ class Spot < ApplicationRecord
   belongs_to :end_user
   has_many :tag_maps, dependent: :destroy
   has_many :tags, through: :tag_maps
+  has_many :favorites, dependent: :destroy
   
   has_many_attached :spot_images
   
   validate :spot_images_length
+  
+  def favorited_by?(end_user)
+    favorites.exists?(end_user_id:end_user.id)
+  end
   
   def save_tags(save_tag_lists)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
