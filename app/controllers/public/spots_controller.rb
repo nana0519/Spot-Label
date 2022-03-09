@@ -19,6 +19,11 @@ class Public::SpotsController < ApplicationController
     @spots = Spot.page(params[:page])
   end
   
+  def show 
+    @spot = Spot.find(params[:id])
+    @comment = Comment.new
+  end
+  
   def edit
     @spot = Spot.find(params[:id])
     @tag_list = @spot.tags.pluck(:name).join(" ")

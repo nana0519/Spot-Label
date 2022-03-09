@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     root to: "homes#top"
     resources :spots do
       resource :favorites, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy]
     end
       
     resources :end_users, only: [:show, :edit, :update] do
