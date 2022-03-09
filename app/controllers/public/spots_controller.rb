@@ -16,7 +16,7 @@ class Public::SpotsController < ApplicationController
   end
   
   def index
-    @spots = Spot.all
+    @spots = Spot.page(params[:page])
   end
   
   def edit
