@@ -11,18 +11,27 @@
 
   <div class="profile">
     <div>
-      <%=image_tag @spot.end_user.get_profile_image, class: "profile__image", size: "100x100" %>
+      <%= image_tag @spot.end_user.get_profile_image, class: "profile__image", size: "100x100" %>
       <span><%= @spot.end_user.name %></span>
-    </div class="profile__item">
-    <div class="profile__item">
-      <%= @spot.end_user.introduction %>
+      <span>
+        <% if @spot.end_user == current_end_user %>
+          <%= link_to "投稿を編集する", edit_spot_path(@spot) %>
+        <% end %>
+      </span>
     </div>
+    
+    <div class="profile__item">
+      <%= @spot.introduction %>
+    </div>
+    
     <div class="profile__item">
      住所：<%= @spot.address %>
     </div>
+    
     <div class="profile__item">
       投稿日時：<%= l @spot.created_at %>
     </div>
+    
     <div class="profile__item">
       <% @spot.tags.each do |tag| %>
         <%= link_to tag_path(tag) do %>
@@ -30,6 +39,7 @@
         <% end %>
       <% end %>
     </div>
+    
   </div>
 </div>
 
