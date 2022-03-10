@@ -21,7 +21,14 @@
       <%= @spot.address %>
     </div>
     <div class="profile__item">
-      <%= @spot.tags.name %>
+      
+    </div>
+    <div class="profile__item">
+      <% @spot.tags.each do |tag| %>
+        <%= link_to tag_path(tag) do %>
+          <%= tag.name %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>

@@ -30,6 +30,8 @@ Rails.application.routes.draw do
         patch :withdraw
       end
     end
+    resources :tags, only: [:show]
   end
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

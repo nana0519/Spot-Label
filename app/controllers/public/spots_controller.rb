@@ -16,7 +16,7 @@ class Public::SpotsController < ApplicationController
   end
   
   def index
-    @spots = Spot.page(params[:page])
+    @spots = Spot.order(created_at: :desc).page(params[:page])
   end
   
   def show 

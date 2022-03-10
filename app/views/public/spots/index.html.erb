@@ -1,2 +1,6 @@
-<%= render "index", spots: @spots %>
+<div class="index">
+  <% @spots.each do |spot| %>
+    <%= render "index", spot: spot %>
+  <% end %>
+</div>
 <%= paginate @spots %>
