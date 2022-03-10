@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     root to: "homes#top"
     resources :spots do
       resource :favorites, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy]
     end
       
     resources :end_users, only: [:show, :edit, :update] do
@@ -29,6 +30,8 @@ Rails.application.routes.draw do
         patch :withdraw
       end
     end
+    resources :tags, only: [:show]
   end
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

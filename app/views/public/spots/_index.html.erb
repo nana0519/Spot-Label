@@ -1,38 +1,36 @@
-<div class="index">
-  <% spots.each do |spot| %>
-    <div class="index__item">
-      
-      <div class="image">
-        <ul class="image__box">
-          <% spot.spot_images.each do |image| %>
-            <li class="image__item">
-              <%=link_to spot_path(spot) do %>
-                <%= image_tag image, size: "340x340" %></li>
-              <% end %>
+<div class="index__item">
+  
+  <div class="image">
+    <ul class="image__box">
+      <% spot.spot_images.each do |image| %>
+        <li class="image__item">
+          <%=link_to spot_path(spot) do %>
+            <%= image_tag image, size: "340x340" %>
           <% end %>
-        </ul>
-      </div>
-      
-      <div class="index__content">
-          <span class="index__text">
-            <%= spot.address.truncate(20, omission: '…') %>
-          </span>
-          
-          <span>
-            <% if spot.favorited_by?(current_end_user) %>
-              <%= link_to spot_favorites_path(spot), method: :delete do %>
-                <i class="fa-solid fa-heart index__favorited" aria-hidden="true"></i>
-                <%= spot.favorites.count %>
-              <% end %>
-            <% else %>
-              <%= link_to spot_favorites_path(spot), method: :post do %>
-                <i class="fa-solid fa-heart" aria-hidden="true"></i>
-                <%= spot.favorites.count %>
-              <% end %>
-            <% end %>
-          </span>
-      </div>
-      
-    </div>
-  <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  
+  <div class="index__content">
+    <span class="index__text">
+      <%= spot.address.truncate(20, omission: '…') %>
+    </span>
+    
+    <span>
+      <% if spot.favorited_by?(current_end_user) %>
+        <%= link_to spot_favorites_path(spot), method: :delete do %>
+          <i class="fa-solid fa-heart index__favorited" aria-hidden="true"></i>
+          <%= spot.favorites.count %>
+        <% end %>
+      <% else %>
+        <%= link_to spot_favorites_path(spot), method: :post do %>
+          <i class="fa-solid fa-heart" aria-hidden="true"></i>
+          <%= spot.favorites.count %>
+        <% end %>
+      <% end %>
+    </span>
+  </div>
+  
 </div>
+  
