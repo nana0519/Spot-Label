@@ -18,15 +18,15 @@
       <%= @spot.end_user.introduction %>
     </div>
     <div class="profile__item">
-      <%= @spot.address %>
+     住所：<%= @spot.address %>
     </div>
     <div class="profile__item">
-      
+      投稿日時：<%= l @spot.created_at %>
     </div>
     <div class="profile__item">
       <% @spot.tags.each do |tag| %>
         <%= link_to tag_path(tag) do %>
-          <%= tag.name %>
+          #<%= tag.name %>
         <% end %>
       <% end %>
     </div>
