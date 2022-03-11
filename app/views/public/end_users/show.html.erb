@@ -6,12 +6,12 @@
   </div>
   
   <div>
-    <%= link_to followings_end_user_path(@end_user) do %>
-      follows<%= @end_user.followed.count %>
+    <%= link_to  end_user_followings_path(@end_user) do %>
+      follows<%= @end_user.follower.count %>
     <% end %>
     
-    <%= link_to followers_end_user_path(@end_user) do %>
-      followers<%=  @end_user.follower.count %>
+    <%= link_to end_user_followers_path(@end_user) do %>
+      followers<%=  @end_user.followed.count %>
     <% end %>
     
     <%= link_to collection_end_user_path(@end_user) do %>
