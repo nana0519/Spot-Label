@@ -11,8 +11,10 @@
 
   <div class="profile">
     <div>
-      <%= image_tag @spot.end_user.get_profile_image, class: "profile__image", size: "100x100" %>
-      <span><%= @spot.end_user.name %></span>
+      <%= link_to end_user_path(@spot.end_user) do %>
+        <%= image_tag @spot.end_user.get_profile_image, class: "profile__image", size: "100x100" %>
+        <span><%= @spot.end_user.name %></span>
+      <% end %>
       <span>
         <% if @spot.end_user == current_end_user %>
           <%= link_to "投稿を編集する", edit_spot_path(@spot) %>

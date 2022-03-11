@@ -9,7 +9,7 @@ class Public::SpotsController < ApplicationController
     if @spot.save
       tag_list = params[:spot][:tag_ids].split(/[[:blank:]]+/).select(&:present?)
       @spot.save_tags(tag_list)
-      redirect_to mypage_end_users_path
+      redirect_to end_user_path(current_end_user)
     else
       render "new"
     end
@@ -35,7 +35,7 @@ class Public::SpotsController < ApplicationController
     if @spot.update(spot_params)
       @spot.save_tags(tag_list)
       flash[:notice] = "投稿を編集しました"
-      redirect_to mypage_end_users_path
+      redirect_to end_user_path(current_end_user)
     else
       render "edit"
     end
@@ -44,7 +44,7 @@ class Public::SpotsController < ApplicationController
   def destroy
     @spot = Spot.find(params[:id])
     @spot.destroy
-    redirect_to mypage_end_users_path
+    redirect_to end_user_path(current_end_user)
   end
 
   private

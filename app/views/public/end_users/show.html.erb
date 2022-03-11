@@ -1,0 +1,58 @@
+<div class="profile">
+  <div>
+    <%= image_tag @end_user.get_profile_image, class: "profile__image", size: "100x100" %>
+    <span><%= @end_user.name %></span>
+    <span><%= @end_user.introduction %></span>
+  </div>
+  
+  <div>
+    <%= link_to followings_end_user_path(@end_user) do %>
+      follows<%= @end_user.followed.count %>
+    <% end %>
+    
+    <%= link_to followers_end_user_path(@end_user) do %>
+      followers<%=  @end_user.follower.count %>
+    <% end %>
+    
+    <%= link_to collection_end_user_path(@end_user) do %>
+      <i class="fa-solid fa-heart index__favorited" aria-hidden="true"></i>favorites<%= @end_user.favorites.count %>
+    <% end %>
+  </div>
+  
+  <div>
+    <% if @end_user == current_end_user %>
+      <%= link_to "プロフィール編集", edit_end_user_path %>
+    <% else %>
+      <% if @end_user != current_end_user %>
+        <% if current_end_user.following?(@end_user) %>
+          <%= link_to "unfollow", end_user_relationships_path(@end_user), method: :delete %>
+        <% else %>
+          <%= link_to "follow", end_user_relationships_path(@end_user), method: :post %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+  
+<div class="image__wrap">
+  <% @spots.each do |spot| %>
+    <div class="image__wrap--box">
+      <ul class="image__box">
+        <% spot.spot_images.each do |image| %>
+          <li class="image__item">
+            <%=link_to spot_path(spot) do %>
+              <%= image_tag image, size: "340x340" %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
+
+<%= paginate @spots %>
+ 
+
+
+
+
