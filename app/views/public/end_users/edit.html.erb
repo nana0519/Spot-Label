@@ -1,0 +1,19 @@
+<h2 class="heading">プロフィール編集</h2>
+<%= form_with model: @end_user, url: end_user_path(@end_user), local: true do |f| %>
+  <div class="form">
+    <%= f.label :画像, class: "form__label" %>
+    <%= f.file_field :profile_image %>
+  </div>
+  <div class="form">
+    <%= f.label :名前, class: "form__label" %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="form">
+    <%= f.label :紹介, class: "form__label" %>
+    <%= f.text_area :introduction %>
+  </div>
+  <div class="form">
+    <%= link_to "退会", unsubscribe_end_users_path %>
+    <%= f.submit "変更" %>
+  </div>
+<% end %>
