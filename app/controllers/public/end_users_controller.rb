@@ -5,6 +5,13 @@ class Public::EndUsersController < ApplicationController
     @spots = @end_user.spots.order(created_at: :desc).page(params[:page])
   end
   
+  def collection
+    end_user = EndUser.find(params[:id])
+    favorites = Favorite.where(end_user_id: end_user.id).pluck(:spot_id)
+    @favorite_spots = Spot.find(favorites)
+    @favorite_spots = Kaminari.paginate_array(@favorite_spots).page(params[:page])
+  end
+  
   def edit
     @end_user = current_end_user
   end
