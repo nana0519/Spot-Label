@@ -1,0 +1,6 @@
+<h2 class="heading">
+  <i class="fa-solid fa-heart index__favorited" aria-hidden="true"></i>Favorites
+</h2>
+
+<%= render "spot", spots: @favorite_spots %>
+<%= paginate  @favorite_spots %>
