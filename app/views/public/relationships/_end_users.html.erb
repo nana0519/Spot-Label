@@ -1,0 +1,32 @@
+<table class="table">
+  <% if end_users.exists? %>
+  
+    <% end_users.each do |end_user| %>
+      <tr class="table__row">
+        <td class="table__item">
+          <%= link_to end_user_path(end_user) do %>
+            <%= image_tag end_user.get_profile_image, class: "profile__image--small", size: "100x100" %>
+          <% end %>
+        </td>
+        <td class="table__item">
+          <%= link_to end_user_path(end_user) do %>
+            <%= end_user.name %>
+          <% end %>
+        </td>
+        <td class="table__item">
+          <% if end_user != current_end_user %>
+            <% if current_end_user.following?(end_user) %>
+              <%= link_to "unfollow", end_user_relationships_path(end_user), method: :delete %>
+            <% else %>
+              <%= link_to "follow", end_user_relationships_path(end_user), method: :post %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    
+  <% else %>
+    <td>ユーザーはいません</td>
+  <% end %>
+</table>
+

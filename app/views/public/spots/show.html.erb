@@ -71,7 +71,7 @@
       <tr>
         <td>
           <%= link_to end_user_path(comment.end_user), class: "profile__name" do %>
-            <%= image_tag comment.end_user.get_profile_image, class: "profile__image--comment", size: "50x50" %><br>
+            <%= image_tag comment.end_user.get_profile_image, class: "profile__image--small", size: "50x50" %><br>
             <span class="profile__name"><%= comment.end_user.name %></span>
           <% end %>
         </td>
