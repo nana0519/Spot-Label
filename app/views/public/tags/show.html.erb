@@ -1,7 +1,8 @@
 <h2 class="heading">Serch for"<%= @tag.name %>"</h2>
 <div class="index">
-  <% @tag.spots.each do |spot| %>
+  <% @spots.each do |spot| %>
     <%= render "public/spots/index", spot: spot %>
   <% end %>
 </div>
+
 <%= paginate @spots %>

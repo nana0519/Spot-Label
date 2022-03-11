@@ -23,9 +23,15 @@ Rails.application.routes.draw do
     end
       
     resources :end_users, only: [:show, :edit, :update] do
-      collection do
-        get :mypage
+      resource :relationships, only: [:create, :destroy]
+      
+      member do
+        get :followings
+        get :followers
         get :collection
+      end
+      
+      collection do
         get :unsubscribe
         patch :withdraw
       end
