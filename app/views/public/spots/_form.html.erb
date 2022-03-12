@@ -9,13 +9,13 @@
 </div>
 <div class="form">
   <%= f.label :住所, class: "form__label" %>
-  <%= f.text_field :address, :placeholder => "都道府県から記入をお願いします" %>
+  <%= f.text_field :address, :placeholder => "都道府県から記入" %>
 </div>
 <% if local_assigns[:edit_flag].present? %>
   <!--編集画面の場合-->
   <div class="form">
     <%= f.label :タグ, class: "form__label" %>
-    <%= f.text_field :tag_ids, value: tag_list, :placeholder => "（例）店名　ペット可　駐車場あり" %>
+    <%= f.text_field :tag_ids, value: tag_list %>
   </div>
   <div class="form">
     <%= link_to "削除", spot_path, method: :delete %>
@@ -25,7 +25,7 @@
   <!--新規投稿画面の場合-->
   <div class="form">
     <%= f.label :タグ, class: "form__label" %>
-    <%= f.text_field :tag_ids, :placeholder => "（例）店名　ペット可　駐車場あり" %>
+    <%= f.text_field :tag_ids, :placeholder => "#店名　#ペット可　#駐車場" %>
   </div>
   <div class="form">
     <%= f.submit "投稿", class: "form__btn" %>

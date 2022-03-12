@@ -37,7 +37,7 @@
     <div class="profile__item">
       <% @spot.tags.each do |tag| %>
         <%= link_to tag_path(tag) do %>
-          #<%= tag.name %>
+          <%= tag.name %>
         <% end %>
       <% end %>
     </div>
