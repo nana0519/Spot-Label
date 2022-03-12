@@ -10,6 +10,13 @@
         <% end %>
       </li>
       <li class="header__link">
+        <%= form_with url: search_path, method: :get, local: true do |f| %>
+          <%= f.text_field :content, :placeholder => "住所 or #タグ名" %>
+          <%= f.submit "search" %>
+        <% end %>
+      </li>
+      
+      <li class="header__link">
         <%= link_to end_user_path(current_end_user) do %>
           <i class="fa-solid fa-house-chimney"></i>
         <% end %>

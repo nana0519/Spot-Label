@@ -26,5 +26,9 @@ class Spot < ApplicationRecord
       self.tags << new_tag
     end
   end
+  
+  def self.search_for(content)
+    Spot.where("address LIKE ?", "%" + content + "%")
+  end
 
 end
