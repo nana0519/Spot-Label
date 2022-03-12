@@ -1,3 +1,7 @@
 <h2 class="heading">Serch for"<%= @content %>"</h2>
-<%= render "public/spots/index", spots: @records %>
-<%= paginate @records %>
+<% if @records.exists? %>
+  <%= render "public/spots/index", spots: @records %>
+  <%= paginate @records %>
+<% else %>
+  <p>検索結果はありません</p>
+<% end %>
