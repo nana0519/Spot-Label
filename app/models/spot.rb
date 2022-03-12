@@ -7,6 +7,8 @@ class Spot < ApplicationRecord
 
   has_many_attached :spot_images
 
+  validate :file_length
+
   def favorited_by?(end_user)
     favorites.exists?(end_user_id:end_user.id)
   end
@@ -26,9 +28,15 @@ class Spot < ApplicationRecord
       self.tags << new_tag
     end
   end
-  
+
   def self.search_for(content)
     Spot.where("address LIKE ?", "%" + content + "%")
+  end
+
+  def file_length
+    if spot_images.length > 5 || spot_images.length < 1
+      errors.add(:spot_images, "1枚以上、5枚未満にしてください")
+    end
   end
 
 end
