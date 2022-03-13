@@ -13,14 +13,8 @@
             <%= end_user.name %>
           <% end %>
         </td>
-        <td class="table__item">
-          <% if end_user != current_end_user %>
-            <% if current_end_user.following?(end_user) %>
-              <%= link_to "unfollow", end_user_relationships_path(end_user), method: :delete %>
-            <% else %>
-              <%= link_to "follow", end_user_relationships_path(end_user), method: :post %>
-            <% end %>
-          <% end %>
+        <td class="table__item" id="follow-btn-<%= end_user.id %>">
+          <%= render "public/relationships/follow_btn", end_user: end_user %>
         </td>
       </tr>
     <% end %>

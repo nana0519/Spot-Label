@@ -1,0 +1,16 @@
+<% spot.comments.each do |comment| %>
+<tr>
+  <td>
+    <%= link_to end_user_path(comment.end_user), remote: true, class: "profile__name" do %>
+      <%= image_tag comment.end_user.get_profile_image, class: "profile__image--small", size: "50x50" %><br>
+      <span class="profile__name"><%= comment.end_user.name %></span>
+    <% end %>
+  </td>
+  <td><%= comment.comment %></td>
+  <td>
+    <% if comment.end_user == current_end_user %>
+      <%= link_to "削除", spot_comment_path(spot, comment), method: :delete, remote: true %>
+    <% end %>
+  </td>
+</tr>
+<% end %>

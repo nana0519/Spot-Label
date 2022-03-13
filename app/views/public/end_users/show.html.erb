@@ -11,7 +11,9 @@
     <% end %>
     
     <%= link_to end_user_followers_path(@end_user) do %>
-      followers<%=  @end_user.followed.count %>
+      <span id="count-<%= @end_user.id %>">
+        <%= render "public/relationships/follower_count", end_user: @end_user %>
+      </span>
     <% end %>
     
     <%= link_to collection_end_user_path(@end_user) do %>
@@ -23,13 +25,9 @@
     <% if @end_user == current_end_user %>
       <%= link_to "プロフィール編集", edit_end_user_path %>
     <% else %>
-      <% if @end_user != current_end_user %>
-        <% if current_end_user.following?(@end_user) %>
-          <%= link_to "unfollow", end_user_relationships_path(@end_user), method: :delete %>
-        <% else %>
-          <%= link_to "follow", end_user_relationships_path(@end_user), method: :post %>
-        <% end %>
-      <% end %>
+      <span id="follow-btn-<%= @end_user.id %>">
+        <%= render "public/relationships/follow_btn", end_user: @end_user %>
+      </span>
     <% end %>
   </div>
 </div>
