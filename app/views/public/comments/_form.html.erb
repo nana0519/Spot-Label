@@ -1,0 +1,4 @@
+<%= form_with(model:[spot, comment], url: spot_comments_path(spot), local: false) do |f| %>
+  <%= f.text_area :comment, placeholder: "コメント", class: "show__comment--form", id: "comment-form" %>
+  <%= f.submit "送信" %>
+<% end %>
