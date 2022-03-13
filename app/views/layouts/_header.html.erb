@@ -54,13 +54,9 @@
     <% else %>
       <li class="header__link--logo">
         <!--ヘッダーロゴつける-->
-        <img src="" alt="headerlogo" >
-      </li>
-      <li class="header__link">
-        <%= link_to "新規登録", new_end_user_registration_path, class: "header__link--text" %>
-      </li>
-      <li class="header__link">
-        <%= link_to "ログイン", new_end_user_session_path, class: "header__link--text" %>
+        <%= link_to root_path do %>
+          <img src="" alt="headerlogo" >
+        <% end %>
       </li>
     <% end %>
     
