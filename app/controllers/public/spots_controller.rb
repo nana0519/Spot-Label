@@ -1,6 +1,6 @@
 class Public::SpotsController < ApplicationController
   before_action :authenticate_end_user!
-  
+
   def new
     @spot = Spot.new
   end
@@ -16,21 +16,21 @@ class Public::SpotsController < ApplicationController
       render "new"
     end
   end
-  
+
   def index
     @spots = Spot.order(created_at: :desc).page(params[:page])
   end
-  
-  def show 
+
+  def show
     @spot = Spot.find(params[:id])
     @comment = Comment.new
   end
-  
+
   def edit
     @spot = Spot.find(params[:id])
     @tag_list = @spot.tags.pluck(:name).join(" ")
   end
-  
+
   def update
     @spot = Spot.find(params[:id])
     tag_list = params[:spot][:tag_ids].split(/[[:blank:]]+/).select(&:present?)
@@ -42,7 +42,7 @@ class Public::SpotsController < ApplicationController
       render "edit"
     end
   end
-  
+
   def destroy
     @spot = Spot.find(params[:id])
     @spot.destroy
@@ -50,6 +50,7 @@ class Public::SpotsController < ApplicationController
   end
 
   private
+
   def spot_params
     params.require(:spot).permit(:introduction, :address, spot_images: [], tag_ids: [])
   end

@@ -61,5 +61,6 @@ group :production do
 end
 
 gem 'devise'
-gem 'kaminari','~> 1.2.1'
+gem 'kaminari', '~> 1.2.1'
 gem "rails-i18n"
+gem 'rubocop-airbnb'
