@@ -23,7 +23,7 @@ class Public::SpotsController < ApplicationController
   end
 
   def show
-    @spot = Spot.find(params[:id])
+    @spot = Spot.with_attached_spot_images.find(params[:id])
     @comment = Comment.new
   end
 
