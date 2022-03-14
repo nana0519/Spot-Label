@@ -35,6 +35,7 @@ Rails.application.routes.draw do
       end
     end
     resources :tags, only: [:show]
+    resources :contacts, only: [:new, :create]
     get "search" => "searches#search"
   end
 
