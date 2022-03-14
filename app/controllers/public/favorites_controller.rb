@@ -1,4 +1,5 @@
 class Public::FavoritesController < ApplicationController
+  before_action :authenticate_end_user!
   
   def create
     @spot = Spot.find(params[:spot_id])

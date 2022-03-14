@@ -1,4 +1,5 @@
 class Public::EndUsersController < ApplicationController
+  before_action :authenticate_end_user!
 
   def show
     @end_user = EndUser.find(params[:id])
@@ -17,8 +18,12 @@ class Public::EndUsersController < ApplicationController
   end
 
   def update
-    current_end_user.update(end_user_params)
-    redirect_to end_user_path(current_end_user)
+    @end_user = current_end_user
+    if @end_user.update(end_user_params)
+      redirect_to end_user_path(@end_user)
+    else
+      render "edit"
+    end
   end
 
   def withdraw
@@ -29,7 +34,6 @@ class Public::EndUsersController < ApplicationController
   end
 
   private
-
   def end_user_params
     params.require(:end_user).permit(:name, :introduction, :profile_image)
   end
