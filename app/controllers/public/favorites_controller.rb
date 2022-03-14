@@ -4,6 +4,7 @@ class Public::FavoritesController < ApplicationController
   def create
     @spot = Spot.find(params[:spot_id])
     favorite = current_end_user.favorites.new(spot_id: @spot.id)
+    @spot.favorites.find_by(end_user_id: current_end_user.id)
     favorite.save
   end
 
