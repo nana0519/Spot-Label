@@ -9,5 +9,4 @@ class Public::SearchesController < ApplicationController
       @records = Spot.search_for(@content).order(created_at: :desc).page(params[:page])
     end
   end
-
 end

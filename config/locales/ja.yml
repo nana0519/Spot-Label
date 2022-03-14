@@ -6,13 +6,15 @@ ja:
         email: メールアドレス
         password: パスワード
       admin:
-        
+        name: ユーザー名
         email: メールアドレス
         password: パスワード
       spot:
         spot_images: 画像
         address: 住所
-
+      contact:
+        name: ユーザー名
+        content: お問い合わせ内容
 
   time:
     formats:

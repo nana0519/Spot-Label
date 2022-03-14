@@ -11,7 +11,7 @@ class Spot < ApplicationRecord
   validates :address, presence: true
 
   def favorited_by?(end_user)
-    favorites.exists?(end_user_id:end_user.id)
+    favorites.exists?(end_user_id: end_user.id)
   end
 
   def save_tags(save_tag_lists)
@@ -39,5 +39,4 @@ class Spot < ApplicationRecord
       errors.add(:spot_images, "は1枚以上、5枚未満にしてください")
     end
   end
-
 end

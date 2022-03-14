@@ -17,11 +17,11 @@ class EndUser < ApplicationRecord
 
   has_one_attached :profile_image
 
-  validates :name, length: { maximum: 20}, presence: true
-  validates :introduction, length: { maximum: 500}
+  validates :name, length: { maximum: 20 }, presence: true
+  validates :introduction, length: { maximum: 500 }
   # プロフィール画像のデフォルト設定
   def get_profile_image
-    (profile_image.attached?) ? profile_image : "no_image.jpg"
+    profile_image.attached? ? profile_image : "no_image.jpg"
   end
 
   # フォローする
@@ -36,5 +36,4 @@ class EndUser < ApplicationRecord
   def following?(end_user)
     following_end_user.include?(end_user)
   end
-
 end
