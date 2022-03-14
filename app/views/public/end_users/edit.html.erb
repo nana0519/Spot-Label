@@ -1,3 +1,6 @@
+<!--エラー表示-->
+<%= render "layouts/error", resource: @end_user %>
+
 <h2 class="heading">プロフィール編集</h2>
 <%= form_with model: @end_user, url: end_user_path(@end_user), local: true do |f| %>
   <div class="form">
@@ -5,8 +8,12 @@
     <%= f.file_field :profile_image %>
   </div>
   <div class="form">
-    <%= f.label :名前, class: "form__label" %>
+    <%= f.label :ユーザー名, class: "form__label" %>
     <%= f.text_field :name %>
+  </div>
+  <div class="form">
+    <%= f.label :メールアドレス, class: "form__label" %>
+    <%= f.text_field :email %>
   </div>
   <div class="form">
     <%= f.label :紹介, class: "form__label" %>

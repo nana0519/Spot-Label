@@ -1,4 +1,19 @@
 ja:
+  activerecord:
+    attributes:
+      end_user:
+        name: ユーザー名
+        email: メールアドレス
+        password: パスワード
+      admin:
+        
+        email: メールアドレス
+        password: パスワード
+      spot:
+        spot_images: 画像
+        address: 住所
+
+
   time:
     formats:
       default: "%Y/%m/%d %H:%M"

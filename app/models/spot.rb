@@ -8,6 +8,7 @@ class Spot < ApplicationRecord
   has_many_attached :spot_images
 
   validate :file_length
+  validates :address, presence: true
 
   def favorited_by?(end_user)
     favorites.exists?(end_user_id:end_user.id)
@@ -35,7 +36,7 @@ class Spot < ApplicationRecord
 
   def file_length
     if spot_images.length > 5 || spot_images.length < 1
-      errors.add(:spot_images, "1枚以上、5枚未満にしてください")
+      errors.add(:spot_images, "は1枚以上、5枚未満にしてください")
     end
   end
 

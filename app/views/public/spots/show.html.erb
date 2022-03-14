@@ -50,8 +50,13 @@
 </div>
 
 <div class="show__comment">
-  <%= render "public/comments/form", spot: @spot, comment: @comment %>
+ <!--エラー表示-->
+  <div id="error">
+    <%= render "layouts/error", resource: @comment %>
+  </div>
 
+  <%= render "public/comments/form", spot: @spot, comment: @comment %>
+  
   <table>
     <tbody id="comment-index-<%= @spot.id %>">
       <%= render "public/comments/index", spot: @spot %>

@@ -1,10 +1,13 @@
 class Public::CommentsController < ApplicationController
+  before_action :authenticate_end_user!
   
   def create
     @spot = Spot.find(params[:spot_id])
-    comment = current_end_user.comments.new(comment_params)
-    comment.spot_id = @spot.id
-    comment.save
+    @comment = current_end_user.comments.new(comment_params)
+    @comment.spot_id = @spot.id
+    unless @comment.save
+      render "error"
+    end
   end
   
   def destroy

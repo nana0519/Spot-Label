@@ -7,4 +7,5 @@ class Tag < ApplicationRecord
     # whereメソッドにより配列になるため、[0]と記述
     tag[0].spots
   end
+  
 end
