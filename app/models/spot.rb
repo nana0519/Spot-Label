@@ -10,8 +10,8 @@ class Spot < ApplicationRecord
   validate :file_length
   validates :address, presence: true
 
-  def favorited_by?(end_user)
-    favorites.exists?(end_user_id: end_user.id)
+  def favorited_by?(favorites, end_user_id)
+    favorites.pluck(:end_user_id).include?(end_user_id)
   end
 
   def save_tags(save_tag_lists)
@@ -34,6 +34,7 @@ class Spot < ApplicationRecord
     Spot.where("address LIKE ?", "%" + content + "%")
   end
 
+  # 投稿画像枚数の制限
   def file_length
     if spot_images.length > 5 || spot_images.length < 1
       errors.add(:spot_images, "は1枚以上、5枚未満にしてください")

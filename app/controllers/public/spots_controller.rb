@@ -18,11 +18,12 @@ class Public::SpotsController < ApplicationController
   end
 
   def index
-    @spots = Spot.order(created_at: :desc).page(params[:page])
+    @spots = Spot.with_attached_spot_images.includes(:favorites, :end_user).order(created_at: :desc).page(params[:page])
+    @current_end_user = current_end_user
   end
 
   def show
-    @spot = Spot.find(params[:id])
+    @spot = Spot.with_attached_spot_images.find(params[:id])
     @comment = Comment.new
   end
 
