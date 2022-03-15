@@ -1,64 +1,66 @@
-<header>
-  <ul class="header">
-    
-    <!--end_userログイン後-->
-    <% if end_user_signed_in? %>
-      <li class="header__link--logo">
-        <!--ヘッダーロゴつける-->
-        <%= link_to spots_path do %>
-          <img src="" alt="headerlogo" >
-        <% end %>
-      </li>
-      <li class="header__link">
-        <%= form_with url: search_path, method: :get, local: true do |f| %>
-          <%= f.text_field :content, :placeholder => "住所 or #タグ名" %>
-          <%= f.submit "search" %>
-        <% end %>
-      </li>
-      
-      <li class="header__link">
-        <%= link_to end_user_path(current_end_user) do %>
-          <i class="fa-solid fa-house-chimney"></i>
-        <% end %>
-      </li>
-      <li class="header__link">
-        <%= link_to new_spot_path do %>
-          <i class="fa-solid fa-circle-plus"></i>
-        <% end %>
-      </li>
-      <li class="header__link">
-        <!--通知のリンクつける-->
-        <i class="fa-solid fa-bell"></i>
-      </li>
-      <li class="header__link">
-        <%= link_to destroy_end_user_session_path, method: :delete do %>
-          <i class="fa-solid fa-right-from-bracket"></i>
-        <% end %>
-      </li>
-      
-    <!--管理者ログイン後-->
-    <% elsif admin_signed_in? %>
-      <li class="header__link--logo">
-        <!--ヘッダーロゴつける-->
-        <%= link_to spots_path do %>
-          <img src="" alt="headerlogo" >
-        <% end %>
-      </li>
-      <li class="header__link">
-        <%= link_to destroy_admin_session_path, method: :delete do %>
-          <i class="fa-solid fa-right-from-bracket"></i>
-        <% end %>
-      </li>
-      
-    <!--ログイン前（共通）-->
-    <% else %>
-      <li class="header__link--logo">
-        <!--ヘッダーロゴつける-->
-        <%= link_to root_path do %>
-          <img src="" alt="headerlogo" >
-        <% end %>
-      </li>
+<header class="header">
+  <div class="header__logo">
+    <!--ヘッダーロゴつける-->
+    <%= link_to spots_path do %>
+      <img src="" alt="headerlogo">
     <% end %>
+  </div>
+  
+  <!--（レスポンシブ対応）ハンバーガーメニュー-->
+  <div id="hm-icon">
+      <span></span>
+      <span></span>
+      <span></span>
+  </div>
     
-  </ul>
+  <nav id="hm-nav">
+    <ul class="header__link">
+      <!--end_userログイン後-->
+      <% if end_user_signed_in? %>
+        <li class="header__link--item">
+          <%= form_with url: search_path, method: :get, local: true do |f| %>
+            <%= f.text_field :content, :placeholder => "住所 or #タグ名" %>
+            <%= f.submit "search" %>
+          <% end %>
+        </li>
+        <li class="header__link--item">
+          <%= link_to end_user_path(current_end_user) do %>
+            <i class="fa-solid fa-house-chimney"></i>
+          <% end %>
+        </li>
+        <li class="header__link--item">
+          <%= link_to new_spot_path do %>
+            <i class="fa-solid fa-circle-plus"></i>
+          <% end %>
+        </li>
+        <li class="header__link--item">
+          <!--通知のリンクつける-->
+          <i class="fa-solid fa-bell"></i>
+        </li>
+        <li class="header__link--item">
+          <%= link_to destroy_end_user_session_path, method: :delete do %>
+            <i class="fa-solid fa-right-from-bracket"></i>
+          <% end %>
+        </li>
+
+      <!--管理者ログイン後-->
+      <% elsif admin_signed_in? %>
+        <li class="header__link--item">
+          <%= link_to destroy_admin_session_path, method: :delete do %>
+            <i class="fa-solid fa-right-from-bracket"></i>
+          <% end %>
+        </li>
+        
+      <!--ログイン前（共通）-->
+      <% else %>
+        <li class="header__logo">
+          <!--ヘッダーロゴつける-->
+          <%= link_to root_path do %>
+            <img src="" alt="headerlogo" >
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </nav>
+
 </header>

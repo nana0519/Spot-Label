@@ -1,6 +1,8 @@
-<h2 class="heading">本当に退会しますか？</h2>
-<p class="heading__text">退会する場合は、「退会する」をクリックしてください。</p>
-<div class="heading__text">
-  <%= link_to "退会する", withdraw_end_users_path, method: :patch %>
-  <%= link_to "退会しない", spots_path %>
+<div class="text">
+  <h2 class="text__heading">本当に退会しますか？</h2>
+  <p class="text__content">退会する場合は、「退会する」をクリックしてください。</p>
+  <div class="btn post">
+    <%= link_to "退会する", withdraw_end_users_path, method: :patch, class: "btn__simple--red post__btween" %>
+    <%= link_to "退会しない", spots_path, class: "btn__simple--blue post__btween" %>
+  </div>
 </div>

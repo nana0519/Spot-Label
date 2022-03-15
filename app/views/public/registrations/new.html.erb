@@ -1,37 +1,41 @@
- 
+ <!--エラー表示-->
  <%= render "layouts/error", resource: resource %>
 
 <h2 class="heading">新規登録</h2>
-
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
- 
+
+  <table class="table">
+    <tr>
+      <th class="table__heading"><%= f.label :ユーザー名 %></th>
+      <td class="table__form"><%= f.text_field :name, :placeholder => "hanako", class: "table__form--field" %></td>
+    </tr>
+    <tr>
+      <th class="table__heading"><%= f.label :メールアドレス %></th>
+      <td class="table__form"><%= f.email_field :email, :placeholder => "sample@example.com", class: "table__form--field" %></td>
+    </tr>
+    <tr>
+      <th class="table__heading">
+        <%= f.label :パスワード %><br>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> 文字以上)</em>
+        <% end %>
+      </th>
+      <td class="table__form"><%= f.password_field :password, :placeholder => "xxxxxx", class: "table__form--field" %></td>
+    </tr>
+    <tr>
+      <th class="table__heading">
+        <%= f.label :パスワード %><br>（確認）
+      </th>
+      <td class="table__form"><%= f.password_field :password_confirmation, :placeholder => "xxxxxx", class: "table__form--field" %></td>
+    </tr>
+  </table>
   
-  <div class="field">
-    <%= f.label :ユーザー名 %>
-    <%= f.text_field :name, autofocus: true, :placeholder => "hanako" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autocomplete: "email", :placeholder => "sample@example.com" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :パスワード %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> 文字以上)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :パスワード（確認） %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="btn">
-    <%= f.submit "新規登録", class: "btn__simple--blue" %>
+  <div class="btn post">
+    <%= f.submit "新規登録", class: "btn__big--blue" %>
   </div>
 <% end %>
 
-<%= render "public/shared/links" %>
+<div class="text">
+  ログインは<%= link_to "こちら", new_end_user_session_path %>
+</div>
+

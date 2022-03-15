@@ -1,25 +1,45 @@
 .header {
   width: 100%;
-  display: flex;
   background-color: gray;
+  display: flex;
   
-  %__link {
+  &__logo {
     padding: 20px;
-    list-style: none;
+    margin-right: auto;
   }
   
   &__link {
-    @extend %__link;
-    justify-content: space-between;
-    
-    &--logo {
-      @extend %__link;
-      margin-right: auto;
+    list-style: none;
+    display: flex;
+
+    &--item {
+      margin-left: auto;
+      padding: 20px;
     }
+    
     &--text {
-      @extend %__link;
       color: #FFFFEE;
       text-decoration: none;
     }
+  }
+}
+
+//タブレット縦置きサイズ(768px)以下の際に適用される設定 
+@media (max-width: 768px){
+  #hm-link {
+    position: fixed;
+    right: 20px;
+    top:20px;
+    
+  }
+  .header {
+    display: block;
+  }
+}
+
+// スマートフォンサイズ（425px）以下の際に適用される設定
+@media screen and (max-width: 425px){
+  .header {
+    display: block;
   }
 }

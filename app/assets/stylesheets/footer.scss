@@ -3,8 +3,13 @@
 
   &__text {
     width: 90%;
-    margin: auto;
+    padding-top: 20px;
+    font-size: small;
+    margin: 30px auto;
     text-align: center;
     border-top: solid 1px #FFFFEE;
+    }
+  &__link {
+    text-align: end;
   }
 }
