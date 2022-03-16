@@ -50,11 +50,14 @@
 </div>
 
 <div class="show__comment">
- <!--エラー表示-->
-  <div id="error">
-    <%= render "layouts/error", resource: @comment %>
-  </div>
-  <%= render "public/comments/form", spot: @spot, comment: @comment %>
+  <!--ゲストログインの場合は非表示-->
+  <% unless current_end_user.email ==  "guest@example.com" %>
+    <!--エラー表示-->
+    <div id="error">
+      <%= render "layouts/error", resource: @comment %>
+    </div>
+    <%= render "public/comments/form", spot: @spot, comment: @comment %>
+  <% end %>
   
   <table>
     <tbody id="comment-index-<%= @spot.id %>">

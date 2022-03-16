@@ -1,5 +1,6 @@
 class Public::RelationshipsController < ApplicationController
   before_action :authenticate_end_user!
+  before_action :ensure_guest_user, only: [:create, :destroy]
 
   def create
     @end_user = EndUser.find(params[:end_user_id])
@@ -19,5 +20,13 @@ class Public::RelationshipsController < ApplicationController
   def followers
     end_user = EndUser.find(params[:end_user_id])
     @end_users = end_user.follower_end_user
+  end
+  
+  private
+  def ensure_guest_user
+    end_user = current_end_user
+    if end_user.email == "guest@example.com"
+      redirect_to request.referer, notice: 'ゲストはfollowできません'
+    end
   end
 end

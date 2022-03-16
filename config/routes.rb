@@ -37,7 +37,11 @@ Rails.application.routes.draw do
     resources :tags, only: [:show]
     resources :contacts, only: [:new, :create]
     get "search" => "searches#search"
+    
+    # ゲスト用
+    devise_scope :end_user do
+      post 'end_users/guest_sign_in', to: 'end_users/sessions#guest_sign_in'
+    end
   end
-
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
