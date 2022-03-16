@@ -1,5 +1,6 @@
 class Public::EndUsersController < ApplicationController
   before_action :authenticate_end_user!
+  before_action :ensure_guest_user, only: [:edit, :withdraw]
 
   def show
     @end_user = EndUser.find(params[:id])
@@ -37,5 +38,12 @@ class Public::EndUsersController < ApplicationController
 
   def end_user_params
     params.require(:end_user).permit(:name, :introduction, :profile_image)
+  end
+  
+  def ensure_guest_user
+    end_user = EndUser.find(params[:id])
+    if end_user.email == "guest@example.com"
+      redirect_to request.referer, notice: 'ゲストはアクセスできません'
+    end
   end
 end

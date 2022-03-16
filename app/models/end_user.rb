@@ -36,4 +36,12 @@ class EndUser < ApplicationRecord
   def following?(end_user)
     following_end_user.include?(end_user)
   end
+  
+  # ゲストログイン機能
+  def self.guest
+    find_or_create_by!(name: 'guestuser', email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.name = "guestuser"
+    end
+  end
 end

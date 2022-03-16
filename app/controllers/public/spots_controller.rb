@@ -1,5 +1,6 @@
 class Public::SpotsController < ApplicationController
   before_action :authenticate_end_user!
+  before_action :ensure_guest_user, only: [:new, :edit]
 
   def new
     @spot = Spot.new
@@ -55,5 +56,11 @@ class Public::SpotsController < ApplicationController
   def spot_params
     params.require(:spot).permit(:introduction, :address, spot_images: [], tag_ids: [])
   end
-
+  
+  def ensure_guest_user
+    end_user = current_end_user
+    if end_user.email == "guest@example.com"
+      redirect_to spots_path, notice: 'ゲストはアクセスできません'
+    end
+  end
 end

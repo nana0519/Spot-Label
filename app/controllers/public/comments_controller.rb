@@ -1,5 +1,6 @@
 class Public::CommentsController < ApplicationController
   before_action :authenticate_end_user!
+  before_action :ensure_guest_user, only: [:create, :destroy]
 
   def create
     @spot = Spot.find(params[:spot_id])
@@ -21,4 +22,10 @@ class Public::CommentsController < ApplicationController
     params.require(:comment).permit(:comment)
   end
 
+  def ensure_guest_user
+    end_user = current_end_user
+    if end_user.email == "guest@example.com"
+     redirect_to request.referer
+    end
+  end
 end

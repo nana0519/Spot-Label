@@ -27,6 +27,16 @@
       background: #8FBC8F;
       color: white;
     }
+    
+    &--gray {
+      @extend %__simple;
+      color: #808080;
+      border: solid 2px #808080;
+    }
+    &--gray:hover {
+      background: #808080;
+      color: white;
+    }
 
     &--red {
       @extend %__simple;
