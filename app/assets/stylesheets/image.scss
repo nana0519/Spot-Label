@@ -24,3 +24,17 @@
     list-style: none;
   }
 }
+
+//タブレット縦置きサイズ(768px)以下の際に適用される設定
+@media (max-width: 1300px){
+  .image {
+    &__box {
+      width: 100%;
+    }
+  }
+}
+
+// スマートフォンサイズ（425px）以下の際に適用される設定
+@media screen and (max-width: 425px){
+
+}

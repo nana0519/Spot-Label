@@ -7,9 +7,16 @@
     font-size: small;
     margin: 30px auto;
     text-align: center;
-    border-top: solid 1px #FFFFEE;
+    border-top: solid 2px #777777;
     }
   &__link {
     text-align: end;
+    text-decoration: none;
+    color: #777777;
   }
+  &__icon {
+    color: #777777;
+    font-size: 1.5em;
+  }
+  
 }

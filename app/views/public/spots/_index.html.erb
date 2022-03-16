@@ -18,7 +18,7 @@
         <span class="index__text">
           <%= spot.address.truncate(20, omission: '…') %>
         </span>
-        <span id="favorite-btn-<%= spot.id %>">
+        <span class="favorite" id="favorite-btn-<%= spot.id %>">
           <%= render "public/favorites/favorite", spot: spot %>
         </span>
       </div>

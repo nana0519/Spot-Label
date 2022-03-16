@@ -17,7 +17,7 @@
     <% end %>
     
     <%= link_to collection_end_user_path(@end_user) do %>
-      <i class="fa-solid fa-heart index__favorited" aria-hidden="true"></i>favorites<%= @end_user.favorites.count %>
+      <i class="fa-solid fa-heart favorite__icon--red" aria-hidden="true"></i>favorites<%= @end_user.favorites.count %>
     <% end %>
   </div>
   

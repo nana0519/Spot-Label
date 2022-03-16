@@ -1,45 +1,72 @@
 .header {
   width: 100%;
-  background-color: gray;
+  height: 70px;
+  background-color: #CCCCCC;
   display: flex;
-  
+
   &__logo {
-    padding: 20px;
     margin-right: auto;
+    width: 20%;
+    padding: 10px 20px;
   }
-  
+
+  &__search {
+    line-height: 70px;
+    width: 40%;
+    margin: 0 auto;
+  }
+  &__search input[type=text] {
+    width: 50%;
+    height: 40px;
+    color: #474747;
+    border-radius: 4px;
+    border: 2px solid #474747;
+  }
+  &__search button[type=submit] {
+    padding: 10px 20px;
+    font-size: 15px;
+    color: #fff;
+    background-color: #474747;
+  	border: 2px solid #474747;
+  	border-radius: 4px;
+  }
+
   &__link {
     list-style: none;
     display: flex;
+    width: 40%;
 
     &--item {
       margin-left: auto;
       padding: 20px;
     }
-    
+
     &--text {
       color: #FFFFEE;
       text-decoration: none;
     }
   }
+  &__icon {
+    font-size: 1.5em;
+    color: #777777;
+  }
+  &__icon:hover {
+    color: #474747;
+  }
 }
 
-//タブレット縦置きサイズ(768px)以下の際に適用される設定 
+//タブレット縦置きサイズ(768px)以下の際に適用される設定
 @media (max-width: 768px){
-  #hm-link {
-    position: fixed;
-    right: 20px;
-    top:20px;
-    
-  }
   .header {
-    display: block;
+    flex-direction: row;
+    
+   &__search input[type=text] {
+     font-size: 10px;
+   }
   }
 }
 
 // スマートフォンサイズ（425px）以下の際に適用される設定
 @media screen and (max-width: 425px){
-  .header {
-    display: block;
-  }
+
 }

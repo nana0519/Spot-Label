@@ -7,13 +7,28 @@
   &__item {
     width: 25%;
   }
-  
+
   &__content {
     display: flex;
     justify-content: space-around;
   }
-    
-  &__favorited {
-    color: red;
+}
+
+@media (max-width: 1300px){
+  .index {
+    margin: 0 auto;
+    width: 80%;
+    &__item {
+      width: 32%;
+    }
+  }
+}
+
+//タブレット縦置きサイズ(768px)以下の際に適用される設定
+@media (max-width: 768px){
+  .index {
+    &__item {
+      width: 50%;
+    }
   }
 }
