@@ -55,7 +55,7 @@
   }
 }
 
-//タブレット縦置きサイズ(768px)以下の際に適用される設定
+// レスポンシブ対応
 @media (max-width: 768px){
   .header {
     flex-direction: row;
@@ -64,9 +64,4 @@
      font-size: 10px;
    }
   }
-}
-
-// スマートフォンサイズ（425px）以下の際に適用される設定
-@media screen and (max-width: 425px){
-
 }

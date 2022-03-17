@@ -51,7 +51,7 @@
           </li>
   
         <!--管理者ログイン後-->
-        <% elsif admin_signed_in? %>
+        <% else admin_signed_in? %>
           <li class="header__link--item">
             <%= link_to destroy_admin_session_path, method: :delete do %>
               <i class="fa-solid fa-right-from-bracket header__icon"></i>
@@ -102,6 +102,14 @@
             <%= link_to destroy_admin_session_path, method: :delete do %>
               <i class="fa-solid fa-right-from-bracket"></i>ログアウト
             <% end %>
+          </li>
+        <!--ログイン前（共通）-->
+        <% else %>
+          <li>
+            <%= link_to "新規登録", new_end_user_registration_path %>
+          </li>
+          <li>
+            <%= link_to "ログイン", new_end_user_session_path %>
           </li>
         <% end %>
       </ul>

@@ -1,15 +1,19 @@
-<div class="image__wrap">
+<div class="index">
   <% spots.each do |spot| %>
-    <div class="image__wrap--box">
-      <ul class="image__box">
-        <% spot.spot_images.each do |image| %>
-          <li class="image__item">
-            <%=link_to spot_path(spot) do %>
-              <%= image_tag image, size: "340x340" %>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
+    <div class="index__item">
+      
+      <div class="image">
+        <ul class="image__box">
+          <% spot.spot_images.each do |image| %>
+            <li class="image__item">
+              <%=link_to spot_path(spot) do %>
+                <%= image_tag image, size: "340x340" %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      
     </div>
   <% end %>
 </div>

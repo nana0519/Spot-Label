@@ -1,29 +1,29 @@
 <div class="profile">
   <div>
     <%= image_tag @end_user.get_profile_image, class: "profile__image", size: "100x100" %>
-    <span><%= @end_user.name %></span>
-    <span><%= @end_user.introduction %></span>
+    <span class="profile__name"><%= @end_user.name %></span>
   </div>
   
-  <div>
+  <div class="profile__content">
     <%= link_to  end_user_followings_path(@end_user) do %>
-      follows<%= @end_user.follower.count %>
+      follows<%= @end_user.follower.size %>
     <% end %>
     
     <%= link_to end_user_followers_path(@end_user) do %>
+      <!--フォロー機能が非同期通信のためフォロワーの数も非同期通信に設定-->
       <span id="count-<%= @end_user.id %>">
         <%= render "public/relationships/follower_count", end_user: @end_user %>
       </span>
     <% end %>
     
     <%= link_to collection_end_user_path(@end_user) do %>
-      <i class="fa-solid fa-heart favorite__icon--red" aria-hidden="true"></i>favorites<%= @end_user.favorites.count %>
+      <i class="fa-solid fa-heart favorite__icon--red" aria-hidden="true"></i><span class="profile__hidden">favorites</span><%= @end_user.favorites.size %>
     <% end %>
   </div>
   
-  <div>
+  <div class="profile__btn btn">
     <% if @end_user == current_end_user %>
-      <%= link_to "プロフィール編集", edit_end_user_path %>
+      <%= link_to "プロフィール編集", edit_end_user_path, class: "btn__simple--blue" %>
     <% else %>
       <span id="follow-btn-<%= @end_user.id %>">
         <%= render "public/relationships/follow_btn", end_user: @end_user %>
@@ -31,6 +31,14 @@
     <% end %>
   </div>
 </div>
+
+<div class="profile__introduction">
+  <%=safe_join(@end_user.introduction.split("\n"),tag(:br))%>
+</div>
   
 <%= render "spot", spots: @spots %>
-<%= paginate @spots %>
+
+<div class="paginate">
+  <%= paginate @spots %>
+</div>
+

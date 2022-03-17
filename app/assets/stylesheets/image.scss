@@ -1,16 +1,5 @@
 .image {
-  width: 90%;
-  margin: 0 auto;
-  
-  &__wrap {
-    display: flex;
-    flex-wrap: wrap;
-    
-    &--box {
-      width: 25%;
-    }
-  }
-
+ 
   &__box {
     display: flex;
     overflow-x: auto;
@@ -23,18 +12,4 @@
     padding: 0;
     list-style: none;
   }
-}
-
-//タブレット縦置きサイズ(768px)以下の際に適用される設定
-@media (max-width: 1300px){
-  .image {
-    &__box {
-      width: 100%;
-    }
-  }
-}
-
-// スマートフォンサイズ（425px）以下の際に適用される設定
-@media screen and (max-width: 425px){
-
 }
