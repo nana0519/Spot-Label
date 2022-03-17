@@ -16,6 +16,7 @@
     text-align: left;
     width: 10%;
     padding: 5px;
+    font-size: small;
   }
   &__text {
     color: red;
@@ -46,16 +47,17 @@
   }
 }
 
-//タブレット縦置きサイズ(768px)以下の際に適用される設定 
+// レスポンシブ対応
 @media screen and (max-width: 768px){
   .table {
     width: 85%;
   }
 }
 
-// スマートフォンサイズ（425px）以下の際に適用される設定
 @media screen and (max-width: 425px){
   .table {
-    width: 50%;
+    &__heading {
+      width: 40%;
+    }
   }
 }

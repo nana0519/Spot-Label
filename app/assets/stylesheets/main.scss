@@ -17,3 +17,16 @@
     }
   }
 }
+
+// レスポンシブ対応
+@media (max-width: 768px){
+  .main {
+    &__visual {
+      height: 350px;
+    }
+    &__logo {
+      font-size: 50px;
+      padding-top: 100px;
+    }
+  }
+}

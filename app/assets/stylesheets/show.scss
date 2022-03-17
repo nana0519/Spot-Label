@@ -1,11 +1,77 @@
 .show {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
   display: flex;
 
-  &__image {
-    width: 40%;
-    margin-left: 5%;
+  &__content {
+    width: 100%;
+    margin-left: 30px;
   }
+  &__item {
+    margin-left: 40px;
+    margin-top: 20px;
+  }
+  &__btn {
+    margin: 50px 30px;
+  }
+  &__image {
+    width: 500px;
+  }
+  
   &__favorite {
-    margin-left: 40%;
+    margin-left: 450px;
+  }
+  
+  &__comment {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    &--form {
+      width: 30%;
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid #EEEEEE;
+    }
+    &--index {
+      padding: 20px;
+    }
+  }
+}
+
+// レスポンシブ対応
+@media (max-width: 920px){
+  .show {
+    display: block;
+    &__image {
+      margin: 0 auto;
+    }
+    &__content {
+      width: 500px;
+      margin: 0 auto;
+    }
+    &__comment {
+      width: 500px;
+      margin: 0 auto;
+      &--form {
+        width: 50%;
+      }
+    }
+  }
+}
+@media (max-width: 510px){
+  .show {
+    &__image {
+      width: 90%;
+    }
+    &__favorite {
+      margin-left: 80%;
+    }
+    &__content {
+      width: 90%;
+    }
+    &__comment {
+      width: 90%;
+    }
   }
 }

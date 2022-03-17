@@ -1,66 +1,119 @@
 <header class="header">
   <div class="header__logo">
     <!--ヘッダーロゴつける-->
-    <%= link_to spots_path do %>
-      <img src="" alt="headerlogo">
+    <!--（ログイン後）ヘッダーロゴの遷移先-->
+    <% if end_user_signed_in? || admin_signed_in? %>
+      <%= link_to spots_path do %>
+        <%= image_tag "logo.png" %>
+      <% end %>
+    <!--（ログイン前）ヘッダーロゴの遷移先-->
+    <% else %>
+      <%= link_to root_path do %>
+        <%= image_tag "logo.png" %>
+      <% end %>
     <% end %>
   </div>
   
-  <!--（レスポンシブ対応）ハンバーガーメニュー-->
-  <div id="hm-icon">
-      <span></span>
-      <span></span>
-      <span></span>
-  </div>
-    
-  <nav id="hm-nav">
-    <ul class="header__link">
-      <!--end_userログイン後-->
-      <% if end_user_signed_in? %>
-        <li class="header__link--item">
-          <%= form_with url: search_path, method: :get, local: true do |f| %>
-            <%= f.text_field :content, :placeholder => "住所 or #タグ名" %>
-            <%= f.submit "search" %>
-          <% end %>
-        </li>
-        <li class="header__link--item">
-          <%= link_to end_user_path(current_end_user) do %>
-            <i class="fa-solid fa-house-chimney"></i>
-          <% end %>
-        </li>
-        <li class="header__link--item">
-          <%= link_to new_spot_path do %>
-            <i class="fa-solid fa-circle-plus"></i>
-          <% end %>
-        </li>
-        <li class="header__link--item">
-          <!--通知のリンクつける-->
-          <i class="fa-solid fa-bell"></i>
-        </li>
-        <li class="header__link--item">
-          <%= link_to destroy_end_user_session_path, method: :delete do %>
-            <i class="fa-solid fa-right-from-bracket"></i>
-          <% end %>
-        </li>
-
-      <!--管理者ログイン後-->
-      <% elsif admin_signed_in? %>
-        <li class="header__link--item">
-          <%= link_to destroy_admin_session_path, method: :delete do %>
-            <i class="fa-solid fa-right-from-bracket"></i>
-          <% end %>
-        </li>
-        
-      <!--ログイン前（共通）-->
-      <% else %>
-        <li class="header__logo">
-          <!--ヘッダーロゴつける-->
-          <%= link_to root_path do %>
-            <img src="" alt="headerlogo" >
-          <% end %>
-        </li>
+  <!--検索機能-->
+  <div class="header__search">
+    <%= form_with url: search_path, method: :get, local: true do |f| %>
+      <%= f.text_field :content, :placeholder => "住所 or #タグ名" %>
+      <%= f.button :type => "submit", style: "border-style: none;" do %>
+        <i class="fa-solid fa-magnifying-glass"></i>
       <% end %>
-    </ul>
-  </nav>
+    <% end %>
+  </div>
+  
+  <!--レスポンシブ対応（pc）-->
+  <div class="pc">
+    <nav>
+      <ul class="header__link">
+        <!--end_userログイン後-->
+        <% if end_user_signed_in? %>
+          <li class="header__link--item">
+            <%= link_to end_user_path(current_end_user) do %>
+              <i class="fa-solid fa-house-chimney header__icon"></i>
+            <% end %>
+          </li>
+          <li class="header__link--item">
+            <%= link_to new_spot_path do %>
+              <i class="fa-solid fa-circle-plus header__icon"></i>
+            <% end %>
+          </li>
+          <li class="header__link--item">
+            <!--通知のリンクつける-->
+            <i class="fa-solid fa-bell header__icon"></i>
+          </li>
+          <li class="header__link--item">
+            <%= link_to destroy_end_user_session_path, method: :delete do %>
+              <i class="fa-solid fa-right-from-bracket header__icon"></i>
+            <% end %>
+          </li>
+  
+        <!--管理者ログイン後-->
+        <% else admin_signed_in? %>
+          <li class="header__link--item">
+            <%= link_to destroy_admin_session_path, method: :delete do %>
+              <i class="fa-solid fa-right-from-bracket header__icon"></i>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+  
+  <!--レスポンシブ対応（画面サイズ768px以下）-->
+  <div class="tablet">
+    <div class="hm">
+      <div class="hm__trigger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+      
+    <nav class="hm__nav">
+      <ul>
+        <!--end_userログイン後-->
+        <% if end_user_signed_in? %>
+          <li>
+            <%= link_to end_user_path(current_end_user) do %>
+              <i class="fa-solid fa-house-chimney"></i>マイページ
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_spot_path do %>
+              <i class="fa-solid fa-circle-plus"></i>新規投稿
+            <% end %>
+          </li>
+          <li>
+            <!--通知のリンクつける-->
+            <i class="fa-solid fa-bell"></i>通知
+          </li>
+          <li>
+            <%= link_to destroy_end_user_session_path, method: :delete do %>
+              <i class="fa-solid fa-right-from-bracket"></i>ログアウト
+            <% end %>
+          </li>
+  
+        <!--管理者ログイン後-->
+        <% elsif admin_signed_in? %>
+          <li>
+            <%= link_to destroy_admin_session_path, method: :delete do %>
+              <i class="fa-solid fa-right-from-bracket"></i>ログアウト
+            <% end %>
+          </li>
+        <!--ログイン前（共通）-->
+        <% else %>
+          <li>
+            <%= link_to "新規登録", new_end_user_registration_path %>
+          </li>
+          <li>
+            <%= link_to "ログイン", new_end_user_session_path %>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
 
 </header>

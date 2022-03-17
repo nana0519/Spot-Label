@@ -1,16 +1,5 @@
 .image {
-  width: 90%;
-  margin: 0 auto;
-  
-  &__wrap {
-    display: flex;
-    flex-wrap: wrap;
-    
-    &--box {
-      width: 25%;
-    }
-  }
-
+ 
   &__box {
     display: flex;
     overflow-x: auto;

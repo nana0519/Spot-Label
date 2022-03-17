@@ -1,11 +1,11 @@
  <% if spot.favorited_by?(spot.favorites, current_end_user.id) %>
-  <%= link_to spot_favorites_path(spot), method: :delete, remote: true do %>
-    <i class="fa-solid fa-heart index__favorited" aria-hidden="true"></i>
-    <%= spot.favorites.size %>
+  <%= link_to spot_favorites_path(spot), method: :delete, class: "favorite__link", remote: true do %>
+    <i class="fa-solid fa-heart favorite__icon--red" aria-hidden="true"></i>
+   <%= spot.favorites.size %>
   <% end %>
 <% else %>
-  <%= link_to spot_favorites_path(spot), method: :post, remote: true do %>
-    <i class="fa-solid fa-heart" aria-hidden="true"></i>
+  <%= link_to spot_favorites_path(spot), method: :post, class: "favorite__link", remote: true do %>
+    <i class="fa-solid fa-heart favorite__icon" aria-hidden="true"></i>
     <%= spot.favorites.size %>
   <% end %>
 <% end %>
