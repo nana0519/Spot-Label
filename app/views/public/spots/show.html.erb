@@ -58,11 +58,10 @@
     <%= render "public/comments/form", spot: @spot, comment: @comment %>
   <% end %>
 
-  <table>
-    <tbody id="comment-index-<%= @spot.id %>">
+  <div id="comment-index-<%= @spot.id %>">
       <%= render "public/comments/index", spot: @spot, comments: @comments %>
+  </div>
       
-    </tbody>
-  </table>
-  
+ 
+
 </div>
