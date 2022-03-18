@@ -1,5 +1,5 @@
 <h2 class="heading">Serch for"<%= @content %>"</h2>
-<% if @records.exists? %>
+<% if @records.present? %>
   <%= render "public/spots/index", spots: @records %>
   <div class="paginate">
     <%= paginate @records %>

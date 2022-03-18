@@ -33,6 +33,10 @@ class Spot < ApplicationRecord
   def self.search_for(content)
     Spot.where("address LIKE ?", "%" + content + "%")
   end
+  
+  def spot_tag_search_for(content)
+    Spot.includes(:tags).where("address LIKE ?", "%" + content + "%").where("name LIKE ?", "%" + content + "%")
+  end
 
   # 投稿画像枚数の制限
   def file_length

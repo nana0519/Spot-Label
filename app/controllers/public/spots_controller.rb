@@ -26,6 +26,7 @@ class Public::SpotsController < ApplicationController
   def show
     @spot = Spot.with_attached_spot_images.find(params[:id])
     @comment = Comment.new
+    @comments = @spot.comments.order(created_at: :desc).page(params[:page]).per(3)
   end
 
   def edit
