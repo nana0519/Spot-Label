@@ -6,6 +6,7 @@ class Public::FavoritesController < ApplicationController
     favorite = current_end_user.favorites.new(spot_id: @spot.id)
     @spot.favorites.find_by(end_user_id: current_end_user.id)
     favorite.save
+    @spot.create_notification_favorite(current_end_user) unless current_end_user.id == @spot.end_user_id
   end
 
   def destroy

@@ -11,6 +11,7 @@ class Public::CommentsController < ApplicationController
     unless @comment.save
       render "error"
     end
+    @spot.create_notification_comment(current_end_user, @comment.id) unless current_end_user.id == @spot.end_user_id
   end
 
   def destroy
