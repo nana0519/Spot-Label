@@ -4,6 +4,7 @@ class Spot < ApplicationRecord
   has_many :tags, through: :tag_maps
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   has_many_attached :spot_images
 
@@ -14,6 +15,7 @@ class Spot < ApplicationRecord
     favorites.pluck(:end_user_id).include?(end_user_id)
   end
 
+  # タグの作成
   def save_tags(save_tag_lists)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
     old_tags = current_tags - save_tag_lists
@@ -30,12 +32,53 @@ class Spot < ApplicationRecord
     end
   end
 
+  # 検索機能（あいまい検索）
   def self.search_for(content)
     Spot.where("address LIKE ?", "%" + content + "%")
   end
-  
+
   def spot_tag_search_for(content)
     Spot.includes(:tags).where("address LIKE ?", "%" + content + "%").where("name LIKE ?", "%" + content + "%")
+  end
+  
+  # いいねの通知
+  def create_notification_favorite(current_end_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and spot_id = ? and action = ? ", current_end_user.id, end_user_id, id, "like"])
+    if temp.blank?
+    notification = current_end_user.active_notifications.new(
+      spot_id: id,
+      visited_id: end_user_id,
+      action: "favorite"
+    )
+    
+    if notification.visitor_id == notification.visited_id
+      notification.checked = true
+    end
+    notification.save if notification.valid?
+    end
+  end
+  
+  # コメントの通知
+  def create_notification_comment(current_end_user, comment_id)
+    temp_ids = Comment.select(:end_user_id).where(spot_id: id).where.not(end_user_id: current_end_user.id).distinct
+    temp_ids.each do |temp_id|
+      save_notification_comment(current_end_user, comment_id, temp_id["end_user_id"])
+    end
+    save_notification_comment(current_end_user, comment_id, end_user_id) if temp_ids.blank?
+  end
+  
+  def save_notification_comment(current_end_user, comment_id, visited_id)
+    notification = current_end_user.active_notifications.new(
+      spot_id: id,
+      comment_id: comment_id,
+      visited_id: visited_id,
+      action: "comment"
+    )
+    
+    if notification.visitor_id == notification.visited_id
+      notification.checked = true
+    end
+    notification.save if notification.valid?
   end
 
   # 投稿画像枚数の制限

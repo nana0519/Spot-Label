@@ -36,6 +36,11 @@ Rails.application.routes.draw do
     end
     resources :tags, only: [:show]
     resources :contacts, only: [:new, :create]
+    resources :notifications, only: [:index] do
+      collection do
+        delete :destroy_all
+      end
+    end
     get "search" => "searches#search"
     
     # ゲスト用

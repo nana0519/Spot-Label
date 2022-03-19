@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_14_043330) do
+ActiveRecord::Schema.define(version: 2022_03_19_021030) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2022_03_14_043330) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name", null: false
-    t.text "introduction"
+    t.text "introduction", default: ""
     t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -85,6 +85,17 @@ ActiveRecord::Schema.define(version: 2022_03_14_043330) do
   create_table "favorites", force: :cascade do |t|
     t.integer "end_user_id", null: false
     t.integer "spot_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visitor_id", null: false
+    t.integer "visited_id", null: false
+    t.integer "spot_id"
+    t.integer "comment_id"
+    t.string "action", null: false
+    t.boolean "checked", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
