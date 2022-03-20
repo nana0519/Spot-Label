@@ -32,11 +32,18 @@ class Spot < ApplicationRecord
     end
   end
 
-  # 検索機能（あいまい検索）
-  def self.search_for(content)
-    Spot.where("address LIKE ?", "%" + content + "%")
+  # 検索機能（複数検索）
+  def self.search_for(content, tags_keywords)
+    content.map do |content|
+      Spot.joins(:tags).where("address LIKE ?", "%" + content + "%").where(tags: {name: tags_keywords }).with_attached_spot_images.order(created_at: :desc)
+    end.flatten
   end
-  
+
+  # 検索機能（1つ）
+  def self.search_for_one(content)
+    Spot.where("address LIKE ?", "%" + content + "%").order(created_at: :desc)
+  end
+
   # いいねの通知
   def create_notification_favorite(current_end_user)
     temp = Notification.where(["visitor_id = ? and visited_id = ? and spot_id = ? and action = ? ", current_end_user.id, end_user_id, id, "like"])
@@ -46,14 +53,14 @@ class Spot < ApplicationRecord
       visited_id: end_user_id,
       action: "favorite"
     )
-    
+
     if notification.visitor_id == notification.visited_id
       notification.checked = true
     end
     notification.save if notification.valid?
     end
   end
-  
+
   # コメントの通知
   def create_notification_comment(current_end_user, comment_id)
     temp_ids = Comment.select(:end_user_id).where(spot_id: id).where.not(end_user_id: current_end_user.id).distinct
@@ -62,7 +69,7 @@ class Spot < ApplicationRecord
     end
     save_notification_comment(current_end_user, comment_id, end_user_id) if temp_ids.blank?
   end
-  
+
   def save_notification_comment(current_end_user, comment_id, visited_id)
     notification = current_end_user.active_notifications.new(
       spot_id: id,
@@ -70,7 +77,7 @@ class Spot < ApplicationRecord
       visited_id: visited_id,
       action: "comment"
     )
-    
+
     if notification.visitor_id == notification.visited_id
       notification.checked = true
     end
