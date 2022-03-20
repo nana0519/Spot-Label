@@ -1,0 +1,20 @@
+<!--エラー表示-->
+<%= render "layouts/error", resource: @contact %>
+
+<h3 class="heading">お問い合わせフォーム</h3> 
+<%= form_with model: @contact, url: contacts_path, local: true do |f| %>
+  <table class="table">
+    <tr>
+      <th class="table__heading"> <%= f.label :お名前 %></th>
+      <td class="table__form"><%= f.text_field :name, placeholder: "ユーザー名", class: "table__form--field" %></td>
+    </tr>
+    <tr>
+      <th class="table__heading"><%= f.label :お問い合わせ内容 %></th>
+      <td class="table__form"><%= f.text_area :content, placeholder: "お問い合わせ内容を入力してください", class: "table__form--area" %></td>
+    </tr>
+  </table>
+  
+  <div class="btn post">
+    <%= f.submit "送信", class: "btn__big--blue" %>
+  </div>
+<% end %>

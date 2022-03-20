@@ -1,0 +1,41 @@
+ <!--エラー表示-->
+ <%= render "layouts/error", resource: resource %>
+
+<h2 class="heading">新規登録</h2>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+  <table class="table">
+    <tr>
+      <th class="table__heading"><%= f.label :ユーザー名 %></th>
+      <td class="table__form"><%= f.text_field :name, :placeholder => "hanako", class: "table__form--field" %></td>
+    </tr>
+    <tr>
+      <th class="table__heading"><%= f.label :メールアドレス %></th>
+      <td class="table__form"><%= f.email_field :email, :placeholder => "sample@example.com", class: "table__form--field" %></td>
+    </tr>
+    <tr>
+      <th class="table__heading">
+        <%= f.label :パスワード %><br>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> 文字以上)</em>
+        <% end %>
+      </th>
+      <td class="table__form"><%= f.password_field :password, :placeholder => "xxxxxx", class: "table__form--field" %></td>
+    </tr>
+    <tr>
+      <th class="table__heading">
+        <%= f.label :パスワード %><br>（確認）
+      </th>
+      <td class="table__form"><%= f.password_field :password_confirmation, :placeholder => "xxxxxx", class: "table__form--field" %></td>
+    </tr>
+  </table>
+  
+  <div class="btn post">
+    <%= f.submit "新規登録", class: "btn__big--blue" %>
+  </div>
+<% end %>
+
+<div class="text">
+  ログインは<%= link_to "こちら", new_end_user_session_path %>
+</div>
+

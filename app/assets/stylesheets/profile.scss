@@ -1,0 +1,74 @@
+.profile {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  height: 150px;
+  width: 95%;
+
+  &__image {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-top: 30px;
+
+    &--small {
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+    }
+  }
+  
+  &__name {
+    color: black;
+    &--small {
+      font-size: small;
+      color: black;
+      text-decoration: none;
+    }
+  }
+
+  &__content {
+    line-height: 150px;
+    width: 40%;
+    margin: 0 auto;
+  }
+  &__content a {
+    color: #000;
+    padding: 20px;
+  }
+  &__btn {
+    padding-top: 80px;
+  }
+
+  &__introduction {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 95%;
+  }
+}
+
+// レスポンシブ対応
+@media (max-width: 965px){
+  .profile {
+    width: 95%;
+   
+    &__content {
+      line-height: 0;
+      margin-top: 50px;
+    }
+    &__content a {
+      display: block;
+      padding-top: 10px;
+    }
+    &__introduction {
+      margin-top: 30px;
+      width: 95%;
+    }
+    &__hidden {
+      display: none;
+    }
+    &__btn {
+      font-size: small;
+    }
+  }
+}

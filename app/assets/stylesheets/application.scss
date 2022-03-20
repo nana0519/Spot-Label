@@ -13,3 +13,34 @@
  *= require_tree .
  *= require_self
  */
+// リセットCSS
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+}
+
+#error {
+  color: red;
+}
+.notice {
+  color: green;
+}
+.alert {
+  color: red;
+}
+
+@media (max-width: 768px){
+  .pc {
+    display: none;
+  }
+}
+@media (min-width: 769px){
+  .tablet {
+    display: none;
+  }
+}

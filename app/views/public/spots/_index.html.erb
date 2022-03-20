@@ -1,0 +1,29 @@
+<div class="index-address">
+  <% spots.each do |spot| %>
+    <div class="index-address__item">
+      
+      <div class="image">
+        <ul class="image__box">
+          <% spot.spot_images.each do |image| %>
+            <li class="image__item">
+              <%=link_to spot_path(spot) do %>
+                <%= image_tag image, size: "340x340" %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class="index-address__content">
+        <span class="index-address__text">
+          <%= spot.address.truncate(20, omission: '…') %>
+        </span>
+        <span class="favorite" id="favorite-btn-<%= spot.id %>">
+          <%= render "public/favorites/favorite", spot: spot %>
+        </span>
+      </div>
+      
+    </div>
+  <% end %>
+</div>
+

@@ -1,0 +1,27 @@
+<!--エラー表示-->
+<%= render "layouts/error", resource: @end_user %>
+
+<h2 class="heading">ユーザー編集</h2>
+<%= form_with model: @end_user, url: admin_end_user_path, local: true do |f| %>
+  <table class="table">
+    <tr>
+      <th class="table__heading"><%= f.label :ユーザー名 %></th>
+      <td class="table__form"><%= f.text_field :name, class: "table__form--field" %></td>
+    </tr>
+    <tr>
+      <th class="table__heading"><%= f.label :ステータス %></th>
+      <td class="table__form">
+        <label>
+          <%= f.radio_button :is_deleted, false %>
+          <%= f.label :ステータス, "有効", value: false %>
+          <%= f.radio_button :is_deleted, true %>
+          <%= f.label :ステータス, "退会", value: true %>
+        </label>
+      </td>
+    </tr>
+  </table>
+    
+  <div class="btn post">
+    <%= f.submit "変更を保存", class: "btn__big--blue" %>
+  </div>
+<% end %>

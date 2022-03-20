@@ -1,0 +1,22 @@
+<h2 class="heading">ログイン</h2>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <table class="table">
+    <tr>
+      <th class="table__heading"><%= f.label :メールアドレス %></th>
+      <td class="table__form"><%= f.email_field :email, class: "table__form--field" %></td>
+    </tr>
+    <tr>
+      <th class="table__heading"><%= f.label :パスワード %></th>
+      <td class="table__form"><%= f.password_field :password, class: "table__form--field" %></td>
+    </tr>
+  </table>
+
+  <div class="btn post">
+    <%= f.submit "ログイン", class: "btn__big--green" %>
+  </div>
+<% end %>
+
+<div class="text">
+  新規登録は<%= link_to "こちら", new_end_user_registration_path %>
+</div>

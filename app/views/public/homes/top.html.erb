@@ -1,0 +1,24 @@
+<div class="main__visual">
+  <h1 class="main__logo">Spot Label</h1>
+  <h5 class="main__logo--text">Why don't we share your favorite spots?</h5>
+</div>
+
+<div class="text">
+  <h3 class="text__heading">What about Spot Label?</h3>
+  <p class="text__content">
+    Spot Labelは地元や旅先で見つけた素敵な場所を共有するSNSサイトです。<br>
+    旅先の帰り道、ぶらり旅で素敵なお店や場所を見つけませんか？<br>
+    温かい店主のお店、雰囲気抜群のスポット、あなたのお気に入りの場所にラベルをつけませんか？<br>
+    日常に溢れる素敵な場所を共有しましょう！
+  </p>
+
+  <div>
+    <h3 class="text__heading">Spot Labelをはじめよう</h3>
+    <div class="btn">
+       <%= link_to "新規登録", new_end_user_registration_path, class: "btn__simple--blue" %>
+       <%= link_to "ログイン", new_end_user_session_path, class: "btn__simple--green" %>
+       <%= link_to "ゲスト", end_users_guest_sign_in_path, method: :post, class: "btn__simple--gray" %>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,12 @@
+.favorite {
+  &__icon {
+    color: #FFD5EC;
+    &--red {
+      color: red;
+    }
+  }
+  &__link {
+    color: #000;
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,15 @@
+.image {
+ 
+  &__box {
+    display: flex;
+    overflow-x: auto;
+    margin-top: 30px;
+    padding: 0;
+  }
+  &__item {
+    min-width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}

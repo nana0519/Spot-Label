@@ -1,0 +1,16 @@
+<h3 class="heading">通知</h3>
+<% if @notifications.exists? %>
+  <div>
+    <%= render @notifications %>
+    <div class="btn post">
+      <%= link_to "全件削除", destroy_all_notifications_path, method: :delete, class: "btn__simple--red" %>
+    </div>
+    <div class="paginate">
+      <%= paginate @notifications %>
+    </div>
+  </div>
+<% else %>
+<table class="table">
+  <td>通知はありません</td>
+</table>
+<% end %>

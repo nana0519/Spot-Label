@@ -1,0 +1,9 @@
+<h2 class="heading">Serch for<%= @content %></h2>
+<% if @records.present? %>
+  <%= render "public/spots/index", spots: @records %>
+  <div class="paginate">
+    <%= paginate @records %>
+  </div>
+<% else %>
+  <p>検索結果はありません</p>
+<% end %>

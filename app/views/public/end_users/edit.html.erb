@@ -1,0 +1,29 @@
+<!--エラー表示-->
+<%= render "layouts/error", resource: @end_user %>
+
+<h2 class="heading">プロフィール編集</h2>
+<%= form_with model: @end_user, url: end_user_path(@end_user), local: true do |f| %>
+  <table class="table">
+    <tr>
+      <th class="table__heading"><%= f.label :画像 %></th>
+      <td class="table__form"><%= f.file_field :profile_image %></td>
+    </tr>
+    <tr>
+      <th class="table__heading"><%= f.label :ユーザー名 %></th>
+      <td class="table__form"><%= f.text_field :name, class: "table__form--field" %></td>
+    </tr>
+    <tr>
+      <th class="table__heading"><%= f.label :メールアドレス %></th>
+      <td class="table__form"><%= f.text_field :email, class: "table__form--field" %></td>
+    </tr>
+    <tr>
+      <th class="table__heading"><%= f.label :紹介 %></th>
+      <td class="table__form"><%= f.text_area :introduction, class: "table__form--area" %></td>
+    </tr>
+  </table>
+
+  <div class="btn post">
+    <%= link_to "退会", unsubscribe_end_users_path, class: "btn__simple--red-small post__btween" %>
+    <%= f.submit "変更", class: "btn__simple--blue post__btween" %>
+  </div>
+<% end %>

@@ -1,0 +1,22 @@
+.footer {
+  width: 100%;
+
+  &__text {
+    width: 90%;
+    padding-top: 20px;
+    font-size: small;
+    margin: 30px auto;
+    text-align: center;
+    border-top: solid 2px #777777;
+    }
+  &__link {
+    text-align: end;
+    text-decoration: none;
+    color: #777777;
+    font-size: small;
+  }
+  &__icon {
+    color: #777777;
+  }
+  
+}

@@ -1,0 +1,67 @@
+<div class="show">
+  <div class="show__image">
+    <ul class="image__box">
+      <% @spot.spot_images.each do |image| %>
+        <li class="image__item">
+          <%= image_tag image, size: "500x500" %>
+        </li>
+      <% end %>
+    </ul>
+    <div class="show__favorite" id="favorite-btn-<%= @spot.id %>">
+    <%= render "public/favorites/favorite", spot: @spot %>
+  </div>
+  </div>
+
+  <div class="show__content">
+    <div class="profile">
+      <%= link_to end_user_path(@spot.end_user) do %>
+        <%= image_tag @spot.end_user.get_profile_image, class: "profile__image", size: "100x100" %>
+        <span class="profile__name"><%= @spot.end_user.name %></span>
+      <% end %>
+      <span class="btn show__btn">
+        <% if @spot.end_user == current_end_user %>
+          <%= link_to "投稿を編集する", edit_spot_path(@spot), class: "btn__simple--blue" %>
+        <% end %>
+      </span>
+    </div>
+
+    <div class="show__item">
+      <%=safe_join(@spot.introduction.split("\n"),tag(:br))%>
+    </div>
+
+    <div class="show__item">
+     住所：<%= @spot.address %>
+    </div>
+
+    <div class="show__item">
+      投稿日時：<%= l @spot.created_at %>
+    </div>
+
+    <div class="show__item">
+      <% @spot.tags.each do |tag| %>
+        <%= link_to tag_path(tag) do %>
+          <%= tag.name %>
+        <% end %>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+
+<div class="show__comment">
+  <!--ゲストログインの場合は非表示-->
+  <% unless current_end_user.email ==  "guest@example.com" %>
+    <!--エラー表示-->
+    <div id="error">
+      <%= render "layouts/error", resource: @comment %>
+    </div>
+    <%= render "public/comments/form", spot: @spot, comment: @comment %>
+  <% end %>
+
+  <div id="comment-index-<%= @spot.id %>">
+      <%= render "public/comments/index", spot: @spot, comments: @comments %>
+  </div>
+      
+ 
+
+</div>

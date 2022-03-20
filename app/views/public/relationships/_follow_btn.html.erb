@@ -1,0 +1,9 @@
+<div class="btn">
+  <% if end_user != current_end_user %>
+    <% if current_end_user.following?(end_user) %>
+      <%= link_to "unfollow", end_user_relationships_path(end_user), method: :delete, class: "btn__simple--red", remote: true %>
+    <% else %>
+      <%= link_to "follow", end_user_relationships_path(end_user), method: :post, class: "btn__simple--blue", remote: true %>
+    <% end %>
+  <% end %>
+</div>

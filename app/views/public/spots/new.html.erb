@@ -1,0 +1,7 @@
+<!--エラー表示-->
+<%= render "layouts/error", resource: @spot %>
+
+<h2 class="heading">新規投稿</h2>
+<%= form_with model: @spot, url: spots_path, local: true do |f| %>
+    <%= render :partial => "form", :locals => {:f => f} %>
+<% end %>
