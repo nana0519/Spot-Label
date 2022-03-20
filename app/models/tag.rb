@@ -3,9 +3,9 @@ class Tag < ApplicationRecord
   has_many :spots, through: :tag_maps
 
   def self.search_for(content)
-    tag = Tag.where("name LIKE ?", "%" + content + "%")
-    # whereメソッドにより配列になるため、[0]と記述
-    tag[0].spots
+    content.map do |content|
+      tag = Tag.where(name: content)
+       tag.present? ? tag[0].spots.order(created_at: :desc) : tag = []
+    end.flatten
   end
-
 end
