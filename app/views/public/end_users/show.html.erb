@@ -3,24 +3,24 @@
     <%= image_tag @end_user.get_profile_image, class: "profile__image", size: "100x100" %>
     <span class="profile__name"><%= @end_user.name %></span>
   </div>
-  
+
   <div class="profile__content">
     <%= link_to  end_user_followings_path(@end_user) do %>
       follows<%= @end_user.follower.size %>
     <% end %>
-    
+
     <%= link_to end_user_followers_path(@end_user) do %>
       <!--フォロー機能が非同期通信のためフォロワーの数も非同期通信に設定-->
       <span id="count-<%= @end_user.id %>">
         <%= render "public/relationships/follower_count", end_user: @end_user %>
       </span>
     <% end %>
-    
+
     <%= link_to collection_end_user_path(@end_user) do %>
       <i class="fa-solid fa-heart favorite__icon--red" aria-hidden="true"></i><span class="profile__hidden">favorites</span><%= @end_user.favorites.size %>
     <% end %>
   </div>
-  
+
   <div class="profile__btn btn">
     <% if @end_user == current_end_user %>
       <%= link_to "プロフィール編集", edit_end_user_path, class: "btn__simple--blue" %>
@@ -33,9 +33,10 @@
 </div>
 
 <div class="profile__introduction">
-  <%= safe_join(@end_user.introduction.split("\n"),tag(:br)) %>
+  <%#= safe_join(@end_user.introduction.split("\n"),tag(:br)) %>
+  <%= simple_format @end_user.introduction %>
 </div>
-  
+
 <%= render "spot", spots: @spots %>
 
 <div class="paginate">
