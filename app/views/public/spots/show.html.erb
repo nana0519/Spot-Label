@@ -26,7 +26,7 @@
     </div>
 
     <div class="show__item">
-      <%=safe_join(@spot.introduction.split("\n"),tag(:br))%>
+      <%= simple_format @spot.introduction %>
     </div>
 
     <div class="show__item">
@@ -39,7 +39,7 @@
 
     <div class="show__item">
       <% @spot.tags.each do |tag| %>
-        <%= link_to tag_path(tag) do %>
+        <%= link_to tag_path(tag), class: "show__item--link" do %>
           <%= tag.name %>
         <% end %>
       <% end %>
@@ -61,7 +61,4 @@
   <div id="comment-index-<%= @spot.id %>">
       <%= render "public/comments/index", spot: @spot, comments: @comments %>
   </div>
-      
- 
-
 </div>

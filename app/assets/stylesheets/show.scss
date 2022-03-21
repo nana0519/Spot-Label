@@ -11,6 +11,9 @@
   &__item {
     margin-left: 40px;
     margin-top: 20px;
+    &--link {
+      text-decoration: none;
+    }
   }
   &__btn {
     margin: 50px 30px;
