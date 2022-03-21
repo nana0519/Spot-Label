@@ -1,9 +1,13 @@
 <header class="header">
   <div class="header__logo">
-    <!--ヘッダーロゴつける-->
-    <!--（ログイン後）ヘッダーロゴの遷移先-->
-    <% if end_user_signed_in? || admin_signed_in? %>
+    <!--（end_userログイン後）ヘッダーロゴの遷移先-->
+    <% if end_user_signed_in? %>
       <%= link_to spots_path do %>
+        <%= image_tag "logo.png" %>
+      <% end %>
+    <!--（adminログイン後）ヘッダーロゴの遷移先-->
+    <% elsif admin_signed_in? %>
+      <%= link_to admin_end_users_path do %>
         <%= image_tag "logo.png" %>
       <% end %>
     <!--（ログイン前）ヘッダーロゴの遷移先-->
@@ -13,17 +17,20 @@
       <% end %>
     <% end %>
   </div>
-  
+
   <!--検索機能-->
   <div class="header__search">
-    <%= form_with url: search_path, method: :get, local: true do |f| %>
-      <%= f.text_field :content, :placeholder => "住所 or #タグ名" %>
-      <%= f.button :type => "submit", style: "border-style: none;" do %>
-        <i class="fa-solid fa-magnifying-glass"></i>
+    <!--end_userログイン後-->
+    <% if end_user_signed_in? %>
+      <%= form_with url: search_path, method: :get, local: true do |f| %>
+        <%= f.text_field :content, :placeholder => "住所 or #タグ名" %>
+        <%= f.button :type => "submit", style: "border-style: none;" do %>
+          <i class="fa-solid fa-magnifying-glass"></i>
+        <% end %>
       <% end %>
     <% end %>
   </div>
-  
+
   <!--pc-->
   <div class="pc">
     <nav>
@@ -53,7 +60,7 @@
               <i class="fa-solid fa-right-from-bracket header__icon"></i>
             <% end %>
           </li>
-  
+
         <!--管理者ログイン後-->
         <% elsif admin_signed_in? %>
           <li class="header__link--item">
@@ -65,7 +72,7 @@
       </ul>
     </nav>
   </div>
-  
+
   <!--レスポンシブ対応（画面サイズ768px以下）-->
   <div class="tablet">
     <div class="hm">
@@ -75,7 +82,7 @@
         <span></span>
       </div>
     </div>
-      
+
     <nav class="hm__nav">
       <ul>
         <!--end_userログイン後-->
@@ -95,7 +102,7 @@
               <i class="fa-solid fa-bell header__icon"></i>
             <% end %>
             <% if unchecked_notification.any? %>
-              <i class="fa-solid fa-circle header__action"></i>
+              <i class="fa-solid fa-circle header__action"></i>通知
             <% end %>
           </li>
           <li>
@@ -103,7 +110,7 @@
               <i class="fa-solid fa-right-from-bracket"></i>ログアウト
             <% end %>
           </li>
-  
+
         <!--管理者ログイン後-->
         <% elsif admin_signed_in? %>
           <li>

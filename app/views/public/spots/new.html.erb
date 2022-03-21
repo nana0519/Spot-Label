@@ -1,5 +1,8 @@
 <!--エラー表示-->
 <%= render "layouts/error", resource: @spot %>
+<% unless @tag === true %>
+<%= render "layouts/error", resource: @tag %>
+<% end %>
 
 <h2 class="heading">新規投稿</h2>
 <%= form_with model: @spot, url: spots_path, local: true do |f| %>
