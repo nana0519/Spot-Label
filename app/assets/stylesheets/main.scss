@@ -1,7 +1,7 @@
 .main {
   &__visual {
     width: 100%;
-    height: 600px;
+    height: 650px;
     // 仮画像
     background-image: image-url("main_visual.jpg");
     background-position: center;
@@ -9,11 +9,12 @@
     text-align: center;
   }
   &__logo {
-    font-size: 60px;
+    font-size: 70px;
     color: white;
-   padding-top: 200px;
+   padding-top: 220px;
     &--text {
       color: white;
+      font-size: 20px;
     }
   }
 }
@@ -27,6 +28,9 @@
     &__logo {
       font-size: 50px;
       padding-top: 100px;
+      &--text {
+        font-size: 15px;
+      }
     }
   }
 }
