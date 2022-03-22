@@ -4,6 +4,7 @@ class Tag < ApplicationRecord
   
   validate :tag_names_check
 
+  # タグ検索
   def self.search_for(content)
     content.map do |content|
       tag = Tag.where(name: content)
@@ -15,12 +16,6 @@ class Tag < ApplicationRecord
   # 失敗した情報が入ったtagモデルが返ってくる
   # 成功したら trueが返ってくる
   def self.list_check(tag_list)
-    if (tag_list == [])
-      tmp_tag = Tag.new(name: "")
-      tmp_tag.valid?
-      return tmp_tag
-    end
-    
     tag_list.each do |current_tag|
       tag_model = Tag.new(name: current_tag)
       check_result = tag_model.valid?
@@ -29,14 +24,12 @@ class Tag < ApplicationRecord
         return tag_model
       end
     end
-    
     return true
   end
   
   private
   
   def tag_names_check
-    #byebug
-    errors.add(:name, "の前に半角#をつけてください") unless name.include?("#") == true
+    errors.add(:name, "の前には半角#をつけてください") unless name.include?("#") == true
   end
 end

@@ -15,11 +15,11 @@ class Public::SpotsController < ApplicationController
     tag_list = params[:spot][:tag_ids].split(/[[:blank:]]+/).select(&:present?)
     @tag = Tag.list_check(tag_list)
 
-    if @tag === true && @spot.valid?
-      @spot.save
+    if @tag === true && @spot.save
       @spot.save_tags(tag_list)
       redirect_to end_user_path(current_end_user)
     else
+      @spot.valid?
       render "new"
     end
   end
@@ -38,6 +38,7 @@ class Public::SpotsController < ApplicationController
   def edit
     @spot = Spot.find(params[:id])
     @tag_list = @spot.tags.pluck(:name).join(" ")
+    @tag =Tag.new
   end
 
   def update
@@ -45,12 +46,12 @@ class Public::SpotsController < ApplicationController
     tag_list = params[:spot][:tag_ids].split(/[[:blank:]]+/).select(&:present?)
     @tag = Tag.list_check(tag_list)
    
-    if @tag === true && @spot.valid?
-      @spot.update(spot_params)
+    if @tag === true && @spot.update(spot_params)
       @spot.save_tags(tag_list)
       flash[:notice] = "投稿を編集しました"
       redirect_to spot_path(@spot)
     else
+      @spot.valid?
       render "edit"
     end
   end
