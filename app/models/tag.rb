@@ -5,11 +5,9 @@ class Tag < ApplicationRecord
   validate :tag_names_check
 
   # タグ検索
-  def self.search_for(content)
-    content.map do |content|
-      tag = Tag.where(name: content)
-       tag.present? ? tag[0].spots.order(created_at: :desc) : tag = []
-    end.flatten
+  def self.search_for(tags_keywords)
+   ids = TagMap.joins(:tag).where(tag: {name:tags_keywords}).group(:spot_id).count("spot_id").map{|k,v| k if v==tags_keywords.count }.compact
+   Spot.where(id: ids).with_attached_spot_images.order(created_at: :desc)
   end
   
   # バリデーションに引っかかって失敗したら

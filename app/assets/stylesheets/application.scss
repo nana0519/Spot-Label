@@ -27,6 +27,9 @@ body {
 #error {
   color: red;
 }
+#error li {
+  list-style: none;
+}
 .notice {
   color: green;
 }

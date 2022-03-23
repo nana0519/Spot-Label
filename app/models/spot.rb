@@ -32,16 +32,26 @@ class Spot < ApplicationRecord
     end
   end
 
-  # 検索機能（複数検索）
+  # 検索機能（住所＋タグ）
   def self.search_for(content, tags_keywords)
-    content.map do |content|
-      Spot.joins(:tags).where("address LIKE ?", "%" + content + "%").where(tags: {name: tags_keywords }).with_attached_spot_images.order(created_at: :desc)
-    end.flatten
+    content.each_with_index do | pref, i |
+      if i == 0
+        @res = Spot.where("address like ?", "%#{pref}%")
+      else
+        @res = @res.or(Spot.where("address like ?","%#{pref}%"))
+      end
+    end
+    
+    ids = TagMap.joins(:tag).where(tag: {name:tags_keywords}).group(:spot_id).count("spot_id").map{|k,v| k if v==tags_keywords.count }.compact
+    @res = @res.where(id: ids).with_attached_spot_images.order(created_at: :desc)
+    @res.distinct
   end
-
-  # 検索機能（1つ）
-  def self.search_for_one(content)
-    Spot.where("address LIKE ?", "%" + content + "%").order(created_at: :desc)
+  
+  # 検索機能（住所のみ）
+  def self.search_for_only_address(content)
+    content.map do |content|
+      Spot.where("address LIKE ?", "%" + content + "%").order(created_at: :desc)
+    end.flatten
   end
 
   # いいねの通知

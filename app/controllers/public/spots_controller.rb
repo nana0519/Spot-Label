@@ -12,7 +12,7 @@ class Public::SpotsController < ApplicationController
     @spot.end_user_id = current_end_user.id
     
     # タグをチェックする
-    tag_list = params[:spot][:tag_ids].split(/[[:blank:]]+/).select(&:present?)
+    tag_list = params[:spot][:tag_ids].tr("＃", "#").split(/[[:blank:]]+/).select(&:present?)
     @tag = Tag.list_check(tag_list)
 
     if @tag === true && @spot.save
@@ -43,7 +43,7 @@ class Public::SpotsController < ApplicationController
 
   def update
     @spot = Spot.find(params[:id])
-    tag_list = params[:spot][:tag_ids].split(/[[:blank:]]+/).select(&:present?)
+    tag_list = params[:spot][:tag_ids].tr("＃", "#").split(/[[:blank:]]+/).select(&:present?)
     @tag = Tag.list_check(tag_list)
    
     if @tag === true && @spot.update(spot_params)
