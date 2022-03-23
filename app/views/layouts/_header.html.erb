@@ -101,9 +101,6 @@
             <%= link_to notifications_path do %>
               <i class="fa-solid fa-bell header__icon"></i>通知
             <% end %>
-            <% if unchecked_notification.any? %>
-              <i class="fa-solid fa-circle header__action"></i>
-            <% end %>
           </li>
           <li>
             <%= link_to destroy_end_user_session_path, method: :delete do %>
