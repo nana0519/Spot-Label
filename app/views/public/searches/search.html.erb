@@ -5,5 +5,15 @@
     <%= paginate @records %>
   </div>
 <% else %>
-  <p>検索結果はありません</p>
+  <table class="table">
+    <tr>
+      <td>検索結果はありません</td>
+    </tr>
+    <tr>
+      <td class="table__text">
+        ※タグ名を検索するときは#を付けて検索してください<br>
+      （例）「世田谷区　#カフェ　#駐車場あり」
+      </td>
+    </tr>
+  </table>
 <% end %>

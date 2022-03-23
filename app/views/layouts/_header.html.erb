@@ -23,7 +23,7 @@
     <!--end_userログイン後-->
     <% if end_user_signed_in? %>
       <%= form_with url: search_path, method: :get, local: true do |f| %>
-        <%= f.text_field :content, :placeholder => "住所 or #タグ名" %>
+        <%= f.text_field :content, :placeholder => "住所  #タグ名" %>
         <%= f.button :type => "submit", style: "border-style: none;" do %>
           <i class="fa-solid fa-magnifying-glass"></i>
         <% end %>
