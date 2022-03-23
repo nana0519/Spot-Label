@@ -37,7 +37,7 @@ class Public::EndUsersController < ApplicationController
   private
 
   def end_user_params
-    params.require(:end_user).permit(:name, :introduction, :profile_image)
+    params.require(:end_user).permit(:name, :email, :introduction, :profile_image)
   end
 
   def ensure_guest_user
