@@ -13,3 +13,13 @@
     list-style: none;
   }
 }
+
+// レスポンシブ対応
+@media (max-width: 550px){
+.image {
+  &__item--res {
+    width: 330px;
+    height: 330px;
+  }
+ }
+}
