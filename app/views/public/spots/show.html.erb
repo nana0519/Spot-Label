@@ -12,6 +12,10 @@
   </div>
   </div>
 
+  <div class="show__map">
+    <%= render "map", spot: @spot %>
+  </div>
+  
   <div class="show__content">
     <div class="profile">
       <%= link_to end_user_path(@spot.end_user) do %>
