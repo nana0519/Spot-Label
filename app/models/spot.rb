@@ -7,7 +7,10 @@ class Spot < ApplicationRecord
   has_many :notifications, dependent: :destroy
 
   has_many_attached :spot_images
-
+  
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
+  
   validate :file_length
   validates :address, presence: true
 
