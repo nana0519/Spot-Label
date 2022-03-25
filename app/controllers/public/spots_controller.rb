@@ -10,7 +10,7 @@ class Public::SpotsController < ApplicationController
   def create
     @spot = Spot.new(spot_params)
     @spot.end_user_id = current_end_user.id
-    
+
     # タグをチェックする
     tag_list = params[:spot][:tag_ids].tr("＃", "#").split(/[[:blank:]]+/).select(&:present?)
     @tag = Tag.list_check(tag_list)
@@ -45,7 +45,7 @@ class Public::SpotsController < ApplicationController
     @spot = Spot.find(params[:id])
     tag_list = params[:spot][:tag_ids].tr("＃", "#").split(/[[:blank:]]+/).select(&:present?)
     @tag = Tag.list_check(tag_list)
-   
+
     if @tag === true && @spot.update(spot_params)
       @spot.save_tags(tag_list)
       flash[:notice] = "投稿を編集しました"
@@ -67,7 +67,7 @@ class Public::SpotsController < ApplicationController
   def spot_params
     params.require(:spot).permit(:introduction, :address, spot_images: [], tag_ids: [])
   end
-  
+
   def ensure_guest_user
     end_user = current_end_user
     if end_user.email == "guest@example.com"
