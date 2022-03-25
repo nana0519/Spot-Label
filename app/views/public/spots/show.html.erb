@@ -12,13 +12,9 @@
   </div>
   </div>
 
-  <div class="show__map">
-    <%= render "map", spot: @spot %>
-  </div>
-  
   <div class="show__content">
     <div class="profile">
-      <%= link_to end_user_path(@spot.end_user) do %>
+      <%= link_to end_user_path(@spot.end_user), class: "show__link" do %>
         <%= image_tag @spot.end_user.get_profile_image, class: "profile__image", size: "100x100" %>
         <span class="profile__name"><%= @spot.end_user.name %></span>
       <% end %>
@@ -34,7 +30,8 @@
     </div>
 
     <div class="show__item">
-     住所：<%= @spot.address %>
+     住所：<%= @spot.address %><br>
+      <%= render "map", spot: @spot %>
     </div>
 
     <div class="show__item">

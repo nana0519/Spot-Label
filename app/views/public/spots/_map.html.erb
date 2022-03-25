@@ -1,18 +1,10 @@
-<div id="map"></div>
+<%= link_to "https://maps.google.co.jp/maps?q={lat},{lng}", id: "link", class: "show__link" do %>
+  <span class="btn btn__small--green">Google Map</span>
+<% end %>
 
 <script>
-function initMap(){
-  let place ={lat: <%= spot.latitude %>, lng: <%= spot.longitude %>};
-  let map = new google.maps.Map(document.getElementById('map'), {
-    center: place,
-    zoom: 15
-  });
-
-  let marker = new google.maps.Marker({
-    position: place,
-    map: map
-  });
-
-}
+let link = document.getElementById('link');
+let oldHref = link.getAttribute('href');
+let newHref = oldHref.replace('{lat},{lng}', '<%= spot.latitude %>, <%= spot.longitude %>');
+link.setAttribute('href', newHref);
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API_KEY'] %>&callback=initMap" async defer></script>
