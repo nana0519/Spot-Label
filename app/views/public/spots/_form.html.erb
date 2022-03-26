@@ -1,6 +1,10 @@
 <table class="table">
   <tr>
-    <th class="table__heading"><%= f.label :画像 %></th>
+    <th class="table__heading">
+      <%= f.label :画像 %>
+      <p class="table__text">※必須</p>
+    </th>
+    
     <td class="table__form">
       <%= f.file_field :spot_images, multiple: true %>
       <p class="table__text">最大5枚</p>
@@ -11,7 +15,10 @@
     <td class="table__form"><%= f.text_area :introduction, class: "table__form--area" %></td>
   </tr>
   <tr>
-    <th class="table__heading"><%= f.label :住所 %></td>
+    <th class="table__heading">
+      <%= f.label :住所 %>
+      <p class="table__text">※必須</p>
+    </th>
     <td class="table__form"><%= f.text_field :address, :placeholder => "都道府県から記入", class: "table__form--field" %></td>
   </tr>
   <!--編集画面の場合-->
