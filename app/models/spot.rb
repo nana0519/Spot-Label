@@ -96,11 +96,6 @@ class Spot < ApplicationRecord
     end
     notification.save if notification.valid?
   end
-  
-  # 住所を保存する前に全角のものを半角に変更する
-  def text_change
-    params[:address].tr("０-９", "0-9").gsub(/(?<=\d)[‐－―ー−](?=\d)/, "-")
-  end
 
   # 投稿画像枚数の制限
   def file_length
