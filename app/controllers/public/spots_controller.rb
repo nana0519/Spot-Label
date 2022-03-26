@@ -47,8 +47,8 @@ class Public::SpotsController < ApplicationController
   end
 
   def update
-     @spot = Spot.find(params[:id])
-     # 住所の番地を全角から半角へ変換
+    @spot = Spot.find(params[:id])
+    # 住所の番地を全角から半角へ変換
     temp_address = address_params
     temp_address[:address] = temp_address[:address].tr("０-９", "0-9").gsub(/(?<=\d)[‐－―ー−](?=\d)/, "-")
     spot_save = spot_params.merge(temp_address)

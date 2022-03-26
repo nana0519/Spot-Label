@@ -1,4 +1,5 @@
 /* global $*/
+import $ from "jquery"
 
 // リロードしないと動かなくなるため
 document.addEventListener("turbolinks:load", function () {
