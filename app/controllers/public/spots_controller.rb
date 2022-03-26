@@ -8,7 +8,12 @@ class Public::SpotsController < ApplicationController
   end
 
   def create
-    @spot = Spot.new(spot_params)
+    # 住所の番地を全角から半角へ変換
+    temp_address = address_params
+    temp_address[:address] = temp_address[:address].tr("０-９", "0-9").gsub(/(?<=\d)[‐－―ー−](?=\d)/, "-")
+    
+    spot_save = spot_params.merge(temp_address)
+    @spot = Spot.new(spot_save)
     @spot.end_user_id = current_end_user.id
 
     # タグをチェックする
@@ -42,11 +47,17 @@ class Public::SpotsController < ApplicationController
   end
 
   def update
-    @spot = Spot.find(params[:id])
+     @spot = Spot.find(params[:id])
+     # 住所の番地を全角から半角へ変換
+    temp_address = address_params
+    temp_address[:address] = temp_address[:address].tr("０-９", "0-9").gsub(/(?<=\d)[‐－―ー−](?=\d)/, "-")
+    spot_save = spot_params.merge(temp_address)
+    
+    # タグをチェックする
     tag_list = params[:spot][:tag_ids].tr("＃", "#").split(/[[:blank:]]+/).select(&:present?)
     @tag = Tag.list_check(tag_list)
 
-    if @tag === true && @spot.update(spot_params)
+    if @tag === true && @spot.update(spot_save)
       @spot.save_tags(tag_list)
       flash[:notice] = "投稿を編集しました"
       redirect_to spot_path(@spot)
@@ -65,7 +76,10 @@ class Public::SpotsController < ApplicationController
   private
 
   def spot_params
-    params.require(:spot).permit(:introduction, :address, spot_images: [], tag_ids: [])
+    params.require(:spot).permit(:introduction, spot_images: [], tag_ids: [])
+  end
+  def address_params
+    params.require(:spot).permit(:address)
   end
 
   def ensure_guest_user
