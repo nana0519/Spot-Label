@@ -71,3 +71,21 @@
    }
   }
 }
+@media (max-width: 500px){
+ .header {
+   &__search {
+     margin-left: 40px;
+   }
+   &__search input[type=text] {
+     width: 70%;
+   }
+   &__search button[type=submit] {
+    padding: 10px;
+   }
+  }
+}
+@media (max-width: 300px) {
+ .header__search button[type=submit] {
+   padding: 5px;
+ }
+}
