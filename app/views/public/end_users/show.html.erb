@@ -23,7 +23,7 @@
 
   <div class="profile__btn btn">
     <% if @end_user == current_end_user %>
-      <%= link_to "プロフィール編集", edit_end_user_path, class: "btn__simple--blue" %>
+      <%= link_to "編集", edit_end_user_path, class: "btn__simple--blue" %>
     <% else %>
       <span id="follow-btn-<%= @end_user.id %>">
         <%= render "public/relationships/follow_btn", end_user: @end_user %>

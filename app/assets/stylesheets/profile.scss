@@ -51,6 +51,11 @@
 @media (max-width: 965px){
   .profile {
     width: 95%;
+    
+    &__image {
+      width: 70px;
+      height: 70px;
+    }
    
     &__content {
       line-height: 0;

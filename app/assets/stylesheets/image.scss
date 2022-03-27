@@ -1,8 +1,7 @@
 .image {
- 
+
   &__box {
     display: flex;
-    overflow-x: auto;
     margin-top: 30px;
     padding: 0;
   }
@@ -12,14 +11,4 @@
     padding: 0;
     list-style: none;
   }
-}
-
-// レスポンシブ対応
-@media (max-width: 550px){
-.image {
-  &__item--res {
-    width: 330px;
-    height: 330px;
-  }
- }
 }
