@@ -1,0 +1,14 @@
+.slider {
+  margin-top: 20px;
+}
+.slider .slick-prev {
+  left: 10px;
+}
+.slider .slick-next {
+  right: 10px;
+}
+
+.slider .slick-prev,
+.slider .slick-next {
+  z-index: 100;
+}

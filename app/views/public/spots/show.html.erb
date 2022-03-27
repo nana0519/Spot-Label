@@ -3,7 +3,7 @@
     <ul class="slider">
       <% @spot.spot_images.each do |image| %>
         <li>
-          <%= image_tag image, size: "500x500" %>
+          <%= image_tag image, size: "500x500", class: "show____slider__image" %>
         </li>
       <% end %>
     </ul>
@@ -20,7 +20,7 @@
       <% end %>
       <span class="btn show__btn">
         <% if @spot.end_user == current_end_user %>
-          <%= link_to "投稿を編集する", edit_spot_path(@spot), class: "btn__simple--blue" %>
+          <%= link_to "編集", edit_spot_path(@spot), class: "btn__simple--blue" %>
         <% end %>
       </span>
     </div>

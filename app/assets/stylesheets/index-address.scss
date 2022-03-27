@@ -5,7 +5,6 @@
   display: flex;
   flex-wrap: wrap;
  
-
   &__item {
     max-width: 350px;
     padding: 3px;
@@ -16,9 +15,24 @@
     justify-content: space-around;
   }
 }
+// レスポンシブ対応
+@media (max-width: 1390px){
+  .index-address {
+    width: 1100px;
+  }
+}
+
+@media (max-width: 1024px){
+  .index-address {
+    width: 720px;
+  }
+}
 
 @media (max-width: 710px){
   .index-address {
     display: block;
+    &__item {
+      margin: 0 auto;
+    }
   }
 }
