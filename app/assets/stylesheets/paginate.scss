@@ -1,4 +1,21 @@
 .paginate {
 text-align: center;
-margin-top: 20px;
+margin: 20px auto 0;
+width: 50%;
 }
+.paginate span {
+  color: #000;
+}
+.paginate a {
+  border-radius: 1px;
+  text-decoration: none;
+  color: #BBBBBB;
+}
+.paginate a:hover {
+  background-color: #f3f3f3;
+}
+
+.current {
+  color: #008CFF;
+}
+

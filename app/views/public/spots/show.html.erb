@@ -30,7 +30,7 @@
     </div>
 
     <div class="show__item">
-     住所：<%= @spot.address %><br>
+     住所<%= image_tag "address.png" %><%= @spot.address %><br>
       <%= render "map", spot: @spot %>
     </div>
 
