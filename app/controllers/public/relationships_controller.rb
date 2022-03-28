@@ -22,8 +22,9 @@ class Public::RelationshipsController < ApplicationController
     end_user = EndUser.find(params[:end_user_id])
     @end_users = end_user.follower_end_user
   end
-  
+
   private
+
   def ensure_guest_user
     end_user = current_end_user
     if end_user.email == "guest@example.com"

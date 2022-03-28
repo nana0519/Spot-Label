@@ -3,8 +3,8 @@
 <% end %>
 
 <script>
-let link = document.getElementById('link');
-let oldHref = link.getAttribute('href');
-let newHref = oldHref.replace('{lat},{lng}', '<%= spot.latitude %>, <%= spot.longitude %>');
+var link = document.getElementById('link');
+var oldHref = link.getAttribute('href');
+var newHref = oldHref.replace('{lat},{lng}', '<%= spot.latitude %>, <%= spot.longitude %>');
 link.setAttribute('href', newHref);
 </script>

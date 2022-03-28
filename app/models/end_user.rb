@@ -33,10 +33,12 @@ class EndUser < ApplicationRecord
   def follow(end_user)
     follower.create(followed_id: end_user.id)
   end
+
   # フォローを外す
   def unfollow(end_user)
     follower.find_by(followed_id: end_user.id).destroy
   end
+
   # フォローしているかを確認する
   def following?(end_user)
     following_end_user.include?(end_user)
@@ -49,10 +51,10 @@ class EndUser < ApplicationRecord
       user.name = "guestuser"
     end
   end
-  
+
   # フォローの通知
   def create_notification_follow(current_end_user)
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_end_user.id, id, "follow"])
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ", current_end_user.id, id, "follow"])
     if temp.blank?
       notification = current_end_user.active_notifications.new(
         visited_id: id,

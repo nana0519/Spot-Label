@@ -18,7 +18,6 @@ class Public::CommentsController < ApplicationController
     Comment.find(params[:id]).destroy
     @spot = Spot.find(params[:spot_id])
     @comments = @spot.comments.order(created_at: :desc).page(params[:page]).per(3)
-
   end
 
   private
@@ -30,7 +29,7 @@ class Public::CommentsController < ApplicationController
   def ensure_guest_user
     end_user = current_end_user
     if end_user.email == "guest@example.com"
-     redirect_to request.referer
+      redirect_to request.referer
     end
   end
 end
