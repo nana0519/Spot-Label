@@ -35,7 +35,7 @@ tags = Tag.create!(
                     introduction: "[絶品]牛たたきパスタすごくお勧めです！",
                     end_user_id: end_users[0].id)
                     
-spot.spot_images.attach(io: File.open(Rails.root.join('/db/fixtures/sample-post1.jpg')),
+spot.spot_images.attach(io: File.open(Rails.root.join('app/assets/images/sample-post1.jpg')),
                   filename: 'sample-post1.jpg')
   
 # spot = Spot.create!(
