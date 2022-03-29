@@ -8,6 +8,7 @@ class Tag < ApplicationRecord
   def self.search_for(tags_keywords)
     ids = TagMap.joins(:tag).where(tag: { name: tags_keywords }).group(:spot_id).
       count("spot_id").map { |k, v| k if v == tags_keywords.count } .compact
+    # Active StorageのN+1問題
     Spot.where(id: ids).with_attached_spot_images.order(created_at: :desc)
   end
 

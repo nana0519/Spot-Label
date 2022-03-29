@@ -8,6 +8,7 @@ class Spot < ApplicationRecord
 
   has_many_attached :spot_images
 
+  # 住所から緯度経度を取得する
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
 
@@ -47,6 +48,7 @@ class Spot < ApplicationRecord
 
     ids = TagMap.joins(:tag).where(tag: { name: tags_keywords }).group(:spot_id).
       count("spot_id").map { |k, v| k if v == tags_keywords.count }.compact
+    # Active StorageのN+1問題
     @res = @res.where(id: ids).with_attached_spot_images.order(created_at: :desc)
     @res.distinct
   end
@@ -54,7 +56,8 @@ class Spot < ApplicationRecord
   # 検索機能（住所のみ）
   def self.search_for_only_address(spot_keywords)
     spot_keywords.map do |spot_keyword|
-      Spot.where("address LIKE ?", "%" + spot_keyword + "%").order(created_at: :desc)
+      # Active StorageのN+1問題
+      Spot.where("address LIKE ?", "%" + spot_keyword + "%").with_attached_spot_images.order(created_at: :desc)
     end.flatten
   end
 
