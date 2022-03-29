@@ -50,7 +50,6 @@ EndUser.create!(
 #       end_user_id: end_users[0].id,
 #       # tag_id: [tags[0].id, tags[1].id]
 #     },
-    
 #     {
 #       address: "京都府亀岡市西別院町柚原水汲12",
 #       latitude: "34.9606",
@@ -92,7 +91,6 @@ EndUser.create!(
 #     }
 #   ]
 # # )
-
 # @box = ['sample-post1.jpg',
 #         'sample-post2.jpg',
 #         'sample-post3.jpg',
