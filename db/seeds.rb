@@ -3,7 +3,7 @@ Admin.create!(
   password: ENV['ADMIN_PASSWORD']
   )
 
-end_users = EndUser.create!(
+EndUser.create!(
   [
     {email: "hanako@test.com", name: "hanako", password: "password", introduction: "Hello!"},
     {email: "tarou@test.com", name: "tarou", password: "password", introduction: "おすすめを紹介します！"},
@@ -11,44 +11,42 @@ end_users = EndUser.create!(
   ]
 )
 
-tags = Tag.create!(
-  [
-    {name: "#カフェ"},
-    {name: "#KAU-KAU"},
-    {name: "#ドゥリムトン村"},
-    {name: "#観光地"},
-    {name: "#駐車場あり"},
-    {name: "#ほんたき寺巣"},
-    {name: "#絶景"},
-    {name: "#薬膳カレー"},
-    {name: "#大鳳餃子"},
-    {name: "#餃子"},
-    {name: "#Miisuk"},
-    {name: "#タイ料理"},
-  ]
-)
-
-
- 
- spot = Spot.create(address: "兵庫県西宮市上甲東園3-9-8",
-                    latitude: "34.7686",
-                    longitude: "135.35",
-                    introduction: "[絶品]牛たたきパスタすごくお勧めです！",
-                    end_user_id: 1)
-                    
-spot.spot_images.attach(io: File.open(Rails.root.join('app/assets/images/sample-post1.jpg')),
-                  filename: 'sample-post1.jpg')
-  
-# spot = Spot.create!(
+# tags = Tag.create!(
 #   [
+#     {name: "#カフェ"},
+#     {name: "#KAU-KAU"},
+#     {name: "#ドゥリムトン村"},
+#     {name: "#観光地"},
+#     {name: "#駐車場あり"},
+#     {name: "#ほんたき寺巣"},
+#     {name: "#絶景"},
+#     {name: "#薬膳カレー"},
+#     {name: "#大鳳餃子"},
+#     {name: "#餃子"},
+#     {name: "#Miisuk"},
+#     {name: "#タイ料理"},
+#   ]
+# )
+
+# spot = Spot.new(address: "兵庫県西宮市上甲東園3-9-8",
+#                     latitude: "34.7686",
+#                     longitude: "135.35",
+#                     introduction: "[絶品]牛たたきパスタすごくお勧めです！",
+#                     end_user_id: 1)
+                  
+                    
+# spot.spot_images.attach(io: File.open('app/assets/images/sample-post1.jpg'), filename: 'sample-post1.jpg')
+  
+# spot.save!
+# spot = Spot.new(
+# spots = [
 #     {
 #       address: "兵庫県西宮市上甲東園3-9-8",
 #       latitude: "34.7686",
 #       longitude: "135.35",
 #       introduction: "[絶品]牛たたきパスタすごくお勧めです！",
-#       # spot_images: File.open("#{Rails.root}/db/fixtures/sample-post1.jpg"),
-#       spot_images: (io: File.open(Rails.root.join('app/assets/images/cat.jpg'))
-#                   filename: 'cat.jpg'),
+#       # spot.spot_images.attach(io: File.open('app/assets/images/sample-post1.jpg'), filename: 'sample-post1.jpg')
+#       # spot_images: "sample-post1.jpg",
 #       end_user_id: end_users[0].id,
 #       # tag_id: [tags[0].id, tags[1].id]
 #     },
@@ -58,7 +56,7 @@ spot.spot_images.attach(io: File.open(Rails.root.join('app/assets/images/sample-
 #       latitude: "34.9606",
 #       longitude: "135.51",
 #       introduction: "イギリスの田舎町を再現した「ドゥリムトン村」",
-#       # spot_images: File.open("#{Rails.root}/db/fixtures/sample-post2-2.jpg"),
+#       # spot_images: "sample-post2.jpg",
 #       end_user_id: end_users[1].id,
 #     #   tag_id: [tags[2].id, tags[3].id, tags[4].id]
 #     },
@@ -67,6 +65,7 @@ spot.spot_images.attach(io: File.open(Rails.root.join('app/assets/images/sample-
 #       latitude: "34.9354",
 #       longitude: "135.468",
 #       introduction: "【絶景カフェ】薬膳カレーとふわふわなロールケーキとても美味しかったです！",
+#       # spot_images: "sample-post3.jpg",
 #       # spot_images: File.open("#{Rails.root}/db/fixtures/sample-post3-2.jpg"),
 #       end_user_id: end_users[0].id,
 #       # tag_id: [tags[0].id, tags[4].id, tags[5].id, tags[6].id, tags[7].id]
@@ -77,6 +76,7 @@ spot.spot_images.attach(io: File.open(Rails.root.join('app/assets/images/sample-
 #       longitude: "135.767",
 #       introduction: "タイ料理が好きになったきっかけのお店!\r\nタイ料理が好きな方にも苦手な方にもおすすめです！",
 #       # spot_images: File.open("#{Rails.root}/db/fixtures/sample-post4.jpg"),
+#       # spot_images: "sample-post4.jpg",
 #       end_user_id: end_users[2].id,
 #       # tag_id: [tags[10].id, tags[11].id, tags[0].id]
 #     },
@@ -86,8 +86,21 @@ spot.spot_images.attach(io: File.open(Rails.root.join('app/assets/images/sample-
 #       longitude: "135.297",
 #       introduction: "見た目も可愛くて、色んな味を楽しめるマカロン餃子！\r\nお店の方もとても温かく、また行きたいお気に入りのお店です！",
 #       # spot_images: File.open("#{Rails.root}/db/fixtures/sample-post5.jpg"),
+#       # spot_images: "sample-post5.jpg",
 #       end_user_id: end_users[2].id,
 #       # tag_id: [tags[8].id, tags[9].id]
 #     }
 #   ]
-# )
+# # )
+
+# @box = ['sample-post1.jpg',
+#         'sample-post2.jpg',
+#         'sample-post3.jpg',
+#         'sample-post4.jpg',
+#         'sample-post5.jpg']
+# spots.each.with_index(1) do | spot, index |
+# item =  Spot.new(spot) 
+# # binding.pry
+# item.spot_images.attach(io: File.open('app/assets/images/@box'), filename: 'sample-post1.jpg')
+# item.save! 
+# end
