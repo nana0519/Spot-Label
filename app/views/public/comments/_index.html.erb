@@ -3,7 +3,7 @@
     <% comments.each do |comment| %>
       <tr>
         <td>
-          <%= link_to end_user_path(comment.end_user), remote: true, class: "profile__name" do %>
+          <%= link_to end_user_path(comment.end_user), class: "profile__name" do %>
             <%= image_tag comment.end_user.get_profile_image, class: "profile__image--small", size: "50x50" %><br>
             <span class="profile__name--small"><%= comment.end_user.name %></span>
           <% end %>
@@ -18,7 +18,3 @@
     <% end %>
   </tbody>
 </table>
-
-<div>
-  <%= paginate comments %>
-</div>
