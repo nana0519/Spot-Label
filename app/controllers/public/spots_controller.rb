@@ -37,7 +37,7 @@ class Public::SpotsController < ApplicationController
   def show
     @spot = Spot.with_attached_spot_images.find(params[:id])
     @comment = Comment.new
-    @comments = @spot.comments.order(created_at: :desc).page(params[:page]).per(3)
+    @comments = @spot.comments.order(created_at: :desc)
   end
 
   def edit
@@ -78,7 +78,7 @@ class Public::SpotsController < ApplicationController
   def spot_params
     params.require(:spot).permit(:introduction, spot_images: [], tag_ids: [])
   end
-
+  
   def address_params
     params.require(:spot).permit(:address)
   end

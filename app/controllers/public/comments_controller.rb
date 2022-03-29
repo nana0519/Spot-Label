@@ -6,7 +6,7 @@ class Public::CommentsController < ApplicationController
     @spot = Spot.find(params[:spot_id])
     @comment = current_end_user.comments.new(comment_params)
     @comment.spot_id = @spot.id
-    @comments = @spot.comments.order(created_at: :desc).page(params[:page]).per(3)
+    @comments = @spot.comments.order(created_at: :desc)
 
     unless @comment.save
       render "error"
@@ -17,7 +17,7 @@ class Public::CommentsController < ApplicationController
   def destroy
     Comment.find(params[:id]).destroy
     @spot = Spot.find(params[:spot_id])
-    @comments = @spot.comments.order(created_at: :desc).page(params[:page]).per(3)
+    @comments = @spot.comments.order(created_at: :desc)
   end
 
   private
