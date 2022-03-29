@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :end_users, only: [:index, :edit, :update]
   end
 
-  # 顧客用
+  # EndUser用
   devise_for :end_users, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: "public/sessions",

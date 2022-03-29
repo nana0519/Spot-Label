@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2022_03_24_005235) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name", null: false
-    t.text "introduction", default: ""
+    t.text "introduction"
     t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -102,9 +102,9 @@ ActiveRecord::Schema.define(version: 2022_03_24_005235) do
 
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id", null: false
+    t.integer "followed_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "followed_id", null: false
   end
 
   create_table "spots", force: :cascade do |t|
