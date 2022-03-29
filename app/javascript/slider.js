@@ -8,3 +8,7 @@ document.addEventListener("turbolinks:load", function () {
     arrows: true
   });
 });
+// キャッシュされる前にスライダーを元のDOMに戻す
+document.addEventListener("turbolinks:before-cache",function (){
+    $('.slider').slick('unslick');
+});

@@ -13,3 +13,16 @@ AllCops:
     - 'lib/tasks/*'
     - 'vendor/**/*'
     - 'path/ruby'
+    - 'node_modules/slick-carousel/slick/config.rb'
+    
+Style/RedundantSelf:
+  Enabled: false
+  
+Layout/IndentationConsistency:
+  Enabled: false
+  
+Layout/LineLength:
+  Max: 150
+  
+Rails/RedundantForeignKey:
+  Enabled: false

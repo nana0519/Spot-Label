@@ -11,7 +11,7 @@ class Public::SpotsController < ApplicationController
     # 住所の番地を全角から半角へ変換
     temp_address = address_params
     temp_address[:address] = temp_address[:address].tr("０-９", "0-9").gsub(/(?<=\d)[‐－―ー−](?=\d)/, "-")
-    
+
     spot_save = spot_params.merge(temp_address)
     @spot = Spot.new(spot_save)
     @spot.end_user_id = current_end_user.id
@@ -43,7 +43,7 @@ class Public::SpotsController < ApplicationController
   def edit
     @spot = Spot.find(params[:id])
     @tag_list = @spot.tags.pluck(:name).join(" ")
-    @tag =Tag.new
+    @tag = Tag.new
   end
 
   def update
@@ -52,7 +52,7 @@ class Public::SpotsController < ApplicationController
     temp_address = address_params
     temp_address[:address] = temp_address[:address].tr("０-９", "0-9").gsub(/(?<=\d)[‐－―ー−](?=\d)/, "-")
     spot_save = spot_params.merge(temp_address)
-    
+
     # タグをチェックする
     tag_list = params[:spot][:tag_ids].tr("＃", "#").split(/[[:blank:]]+/).select(&:present?)
     @tag = Tag.list_check(tag_list)
@@ -78,6 +78,7 @@ class Public::SpotsController < ApplicationController
   def spot_params
     params.require(:spot).permit(:introduction, spot_images: [], tag_ids: [])
   end
+
   def address_params
     params.require(:spot).permit(:address)
   end

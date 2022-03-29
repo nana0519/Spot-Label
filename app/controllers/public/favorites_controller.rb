@@ -15,9 +15,9 @@ class Public::FavoritesController < ApplicationController
     favorite = current_end_user.favorites.find_by(spot_id: @spot.id)
     favorite.destroy
   end
-  
+
   private
-  
+
   def ensure_guest_user
     end_user = current_end_user
     if end_user.email == "guest@example.com"

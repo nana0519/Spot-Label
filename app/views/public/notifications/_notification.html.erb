@@ -10,10 +10,7 @@
     </td>
     <td class="table__item">
       <%== notification_form(notification) %><%= "(#{time_ago_in_words(notification.created_at)}前)" %>
-       <br>
-      <% if !@comment.nil? %>
-        <p class="table__comment"><%= @comment %></p>
-      <% end %>
+      <br>
     </td>
   </tr>
 </tble>

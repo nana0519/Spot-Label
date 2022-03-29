@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # 管理者用
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
-    sessions: "admin/sessions"
+    sessions: "admin/sessions",
   }
 
   namespace :admin do
@@ -42,7 +42,7 @@ Rails.application.routes.draw do
       end
     end
     get "search" => "searches#search"
-    
+
     # ゲスト用
     devise_scope :end_user do
       post 'end_users/guest_sign_in', to: 'end_users/sessions#guest_sign_in'
