@@ -28,12 +28,13 @@ tags = Tag.create!(
   ]
 )
 
+
  
  spot = Spot.create(address: "兵庫県西宮市上甲東園3-9-8",
                     latitude: "34.7686",
                     longitude: "135.35",
                     introduction: "[絶品]牛たたきパスタすごくお勧めです！",
-                    end_user_id: end_users[0].id)
+                    end_user_id: 1)
                     
 spot.spot_images.attach(io: File.open(Rails.root.join('app/assets/images/sample-post1.jpg')),
                   filename: 'sample-post1.jpg')
