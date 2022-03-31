@@ -24,6 +24,10 @@
 - ディープなスポットを知りたいとき
 - 観光先で空いた時間に目的に応じたスポットを探したいとき
 
+### 目指した課題解決
+なかなか決まらない行き先を、パッと探したいというニーズを満たすことを目指しました。
+住所、マップ、写真を用いることで直感的に行きたいスポットを探せ、目的に応じたスポット見つけることができます。
+
 ## 設計書
 - [ER図](https://app.diagrams.net/#G1DynIKoXIbjCrBzokVb9yhgc5hE_BHuyM)
 - [テーブル定義書](https://docs.google.com/spreadsheets/d/1z2eK1wvigCvJ5GGnKADeTsp9HvfBLWmIya9OFRbXgOY/edit#gid=1373217982)
