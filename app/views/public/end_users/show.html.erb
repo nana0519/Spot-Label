@@ -22,7 +22,7 @@
   </div>
 
   <div class="profile__btn btn">
-    <% if @end_user == current_end_user %>
+    <% if @end_user == current_end_user && @end_user.email != "guest@example.com" %>
       <%= link_to "編集", edit_end_user_path, class: "btn__simple--blue" %>
     <% else %>
       <span id="follow-btn-<%= @end_user.id %>">
