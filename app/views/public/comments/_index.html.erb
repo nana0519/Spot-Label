@@ -8,10 +8,12 @@
             <span class="profile__name--small"><%= comment.end_user.name %></span>
           <% end %>
         </td>
-        <td class="show__comment--index"><%=safe_join(comment.comment.split("\n"),tag(:br))%></td>
+        <td class="show__comment--index"><%= simple_format comment.comment %></td>
         <td>
           <% if comment.end_user == current_end_user %>
-            <%= link_to "削除", spot_comment_path(spot, comment), method: :delete, remote: true, class: "btn__simple--red" %>
+            <%= link_to spot_comment_path(spot, comment), method: :delete, remote: true do %>
+              <i class="fa-solid fa-trash-can favorite__icon--red"></i>
+            <% end %>
           <% end %>
         </td>
       </tr>
