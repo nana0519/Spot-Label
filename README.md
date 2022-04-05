@@ -1,4 +1,4 @@
-# Spot Label
+# ![Spot Label](images/label.png)
 
 ## サイト概要
 地元や旅先で見つけた素敵な場所を共有するSNSサイトです。
