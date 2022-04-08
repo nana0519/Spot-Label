@@ -1,0 +1,26 @@
+<table>
+  <tbody>
+    <% comments.each do |comment| %>
+      <tr>
+        <td>
+          <%= link_to end_user_path(comment.end_user), class: "profile__name" do %>
+            <%= image_tag comment.end_user.get_profile_image, class: "profile__image--small", size: "50x50" %><br>
+            <span class="profile__name--small"><%= comment.end_user.name %></span>
+          <% end %>
+        </td>
+        <td class="show__comment--index"><%= simple_format comment.comment %></td>
+        <td>
+          <% if comment.end_user == current_end_user %>
+            <%= link_to spot_comment_path(spot, comment), method: :delete, remote: true do %>
+              <i class="fa-solid fa-trash-can favorite__icon--red"></i>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if comments.size > 2 %>
+  <%= link_to "もっと見る", comment_spot_path(spot), class: "show__link" %>
+<% end %>

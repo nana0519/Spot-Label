@@ -43,6 +43,13 @@
   
   &__link {
     text-decoration: none;
+    color: black;
+    
+    &--right {
+      width: 70%;
+      margin: 0 auto;
+      text-align: right;
+    }
   }
 }
 

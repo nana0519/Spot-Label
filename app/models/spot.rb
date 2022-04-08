@@ -75,10 +75,10 @@ class Spot < ApplicationRecord
         action: "favorite"
       )
 
-    if notification.visitor_id == notification.visited_id
-      notification.checked = true
-    end
-    notification.save if notification.valid?
+      if notification.visitor_id == notification.visited_id
+        notification.checked = true
+      end
+      notification.save if notification.valid?
     end
   end
 
