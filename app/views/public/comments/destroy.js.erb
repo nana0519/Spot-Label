@@ -1,1 +1,2 @@
-$("#comment-index-<%= @spot.id %>").html("<%= j(render 'index', spot: @spot, comments: @comments) %>");
+$("#comment-index-<%= @spot.id %>").html("<%= j(render 'comments', spot: @spot, comments: @comments) %>");
+$("#comments-<%= @spot.id %>").html("<%= j(render 'comments_index', spot: @spot, comments: @comments) %>");
