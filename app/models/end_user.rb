@@ -60,7 +60,7 @@ class EndUser < ApplicationRecord
         visited_id: id,
         action: "follow"
       )
-      notification.save if notification.valid?
+      notification.save
     end
   end
 end
