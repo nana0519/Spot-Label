@@ -1,11 +1,11 @@
 <h2 class="heading">comments</h2>
 
-<div id="comments-<%= @spot.id %>">
-  <%= render "public/comments/comments_index", spot: @spot, comments: @comments %>
+<div id="comments-index-<%= @spot.id %>">
+  <%= render "public/comments/comments_index", spot: @spot, comments: @comments_index %>
 </div>
 
 <div class="paginate">
-  <%= paginate @comments %>
+  <%= paginate @comments_index %>
 </div>
 
 <div class="show__link--right">

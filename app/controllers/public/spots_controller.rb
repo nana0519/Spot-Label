@@ -42,7 +42,7 @@ class Public::SpotsController < ApplicationController
   
   def comment
     @spot = Spot.find(params[:id])
-    @comments = @spot.comments.order(created_at: :desc).page(params[:page])
+    @comments_index = @spot.comments.order(created_at: :desc).page(params[:page])
   end
 
   def edit

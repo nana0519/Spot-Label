@@ -1,12 +1,9 @@
-<% visitor = notification.visitor %>
-<% spot = notification.spot %>
-
 <tble class="table">
   <tr class="table__row">
     <td class="table__item">
       <%= link_to end_user_path(notification.visitor) do %>
-      <%= image_tag notification.visitor.get_profile_image, class: "profile__image--small", size: "50x50" %>
-    <% end %>
+        <%= image_tag notification.visitor.get_profile_image, class: "profile__image--small", size: "50x50" %>
+      <% end %>
     </td>
     <td class="table__item">
       <%== notification_form(notification) %><%= "(#{time_ago_in_words(notification.created_at)}前)" %>
