@@ -63,16 +63,26 @@ class Spot < ApplicationRecord
 
   # いいねの通知
   def create_notification_favorite(current_end_user)
-    notification = current_end_user.active_notifications.new(
-      spot_id: id,
-      visited_id: end_user_id,
-      action: "favorite"
-    )
-    # 自分の投稿に対するいいねは通知しない
-    if notification.visitor_id == notification.visited_id
-      notification.checked = true
+    temp = Notification.where([
+      "visitor_id = ? and visited_id = ? and spot_id = ? and action = ?",
+      current_end_user.id,
+      end_user.id,
+      id,
+      "favorite"
+      ])
+      
+    if temp.blank?
+      notification = current_end_user.active_notifications.new(
+        spot_id: id,
+        visited_id: end_user_id,
+        action: "favorite"
+      )
+      # 自分の投稿に対するいいねは通知しない
+      if notification.visitor_id == notification.visited_id
+        notification.checked = true
+      end
+      notification.save if notification.valid?
     end
-    notification.save
   end
 
   # コメントの通知
@@ -87,7 +97,7 @@ class Spot < ApplicationRecord
     if notification.visitor_id == notification.visited_id
       notification.checked = true
     end
-    notification.save
+    notification.save if notification.valid?
   end
 
   # 投稿画像枚数の制限

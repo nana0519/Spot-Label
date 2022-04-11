@@ -59,7 +59,7 @@
     <%= render "public/comments/form", spot: @spot, comment: @comment %>
   <% end %>
 
-  <div id="comment-index-<%= @spot.id %>">
+  <div id="comments-<%= @spot.id %>">
     <%= render "public/comments/comments", spot: @spot, comments: @comments %>
   </div>
 </div>

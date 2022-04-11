@@ -18,6 +18,7 @@ class Public::CommentsController < ApplicationController
     Comment.find(params[:id]).destroy
     @spot = Spot.find(params[:spot_id])
     @comments = @spot.comments.order(created_at: :desc).limit(3)
+    @comments_index = @spot.comments.order(created_at: :desc).page(params[:page])
   end
 
   private
