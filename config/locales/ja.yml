@@ -5,6 +5,7 @@ ja:
         name: ユーザー名
         email: メールアドレス
         password: パスワード
+        password_confirmation: パスワード確認
       admin:
         name: ユーザー名
         email: メールアドレス
