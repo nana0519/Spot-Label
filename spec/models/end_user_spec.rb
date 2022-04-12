@@ -1,17 +1,17 @@
 require "rails_helper"
 
 RSpec.describe EndUser, "モデルに関するテスト", type: :model do
-  
   describe "end_userの登録" do
+    
     context "有効な内容をpushした場合" do
-      it "データが保存されること" do
+      it "データが保存される" do
         expect(FactoryBot.build(:end_user)).to be_valid
       end
     end
     
     context "未入力でpushした場合" do
       it "nameが未入力の場合にバリデーションチェックされエラーメッセージが表示される" do
-        end_user = EndUser.new(name: '')
+        end_user = EndUser.new(name: "")
         expect(end_user).to be_invalid
         expect(end_user.errors[:name]).to include("が入力されていません。")
       end
