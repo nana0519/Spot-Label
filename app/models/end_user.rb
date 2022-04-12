@@ -22,7 +22,7 @@ class EndUser < ApplicationRecord
 
   has_one_attached :profile_image
 
-  validates :name, length: { maximum: 20 }, presence: true
+  validates :name, length: { maximum: 10 }, presence: true
   validates :introduction, length: { maximum: 500 }
   # プロフィール画像のデフォルト設定
   def get_profile_image
