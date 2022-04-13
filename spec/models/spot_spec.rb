@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe Spot, "モデルに関するテスト", type: :model do
   describe "Spotの登録" do
-    
+
     context "有効な内容をpushした場合" do
       it "データが保存される" do
         expect(FactoryBot.build(:spot)).to be_valid

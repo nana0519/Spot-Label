@@ -1,8 +1,10 @@
 FactoryBot.define do
   factory :spot do
-    end_user_id {"1"}
+    end_user
     introduction {Faker::Lorem.characters(number:50)}
     address {"千葉県浦安市舞浜1-1"}
-    spot_images {Rack::Test::UploadedFile.new("spec/fixtures/test_image.jpg")}
+   after :build do |spot|
+      spot.spot_images.attach(io:File.open(Rails.root.join('spec/fixtures/test_image.jpg')),filename: 'user.jpg') 
+   end
   end
 end
