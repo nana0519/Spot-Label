@@ -8,22 +8,21 @@ class EndUser < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  # 自分からの通知
-  has_many :active_notifications, class_name: "Notification", foreign_key: "visitor_id", dependent: :destroy
-  # 相手からの通知
-  has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy
+  # 通知機能
+  has_many :active_notifications, class_name: "Notification", foreign_key: "visitor_id", dependent: :destroy   #自分からの通知
+  has_many :passive_notifications, class_name: "Notification", foreign_key: "visited_id", dependent: :destroy  #相手からの通知
 
+  # フォロー機能
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  # 自分がフォローしている人
-  has_many :following_end_user, through: :follower, source: :followed
-  # 自分をフォローしている人
-  has_many :follower_end_user, through: :followed, source: :follower
+  has_many :following_end_user, through: :follower, source: :followed  # 自分がフォローしている人
+  has_many :follower_end_user, through: :followed, source: :follower   # 自分をフォローしている人
 
   has_one_attached :profile_image
 
   validates :name, length: { maximum: 10 }, presence: true
   validates :introduction, length: { maximum: 500 }
+
   # プロフィール画像のデフォルト設定
   def get_profile_image
     profile_image.attached? ? profile_image : "no_image.jpg"

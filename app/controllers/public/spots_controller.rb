@@ -39,7 +39,8 @@ class Public::SpotsController < ApplicationController
     @comment = Comment.new
     @comments = @spot.comments.order(created_at: :desc).limit(3)
   end
-  
+
+  # すべてのコメントを表示
   def comment
     @spot = Spot.find(params[:id])
     @comments_index = @spot.comments.order(created_at: :desc).page(params[:page])

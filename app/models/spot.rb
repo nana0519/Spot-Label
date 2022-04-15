@@ -1,10 +1,12 @@
 class Spot < ApplicationRecord
   belongs_to :end_user
-  has_many :tag_maps, dependent: :destroy
-  has_many :tags, through: :tag_maps
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :notifications, dependent: :destroy
+
+  # タグ機能
+  has_many :tag_maps, dependent: :destroy
+  has_many :tags, through: :tag_maps
 
   has_many_attached :spot_images
 
@@ -15,6 +17,7 @@ class Spot < ApplicationRecord
   validate :file_length
   validates :address, presence: true
 
+  # いいねしているか確認
   def favorited_by?(favorites, end_user_id)
     favorites.pluck(:end_user_id).include?(end_user_id)
   end
