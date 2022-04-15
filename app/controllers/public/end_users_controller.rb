@@ -7,10 +7,11 @@ class Public::EndUsersController < ApplicationController
     @spots = @end_user.spots.with_attached_spot_images.order(created_at: :desc).page(params[:page])
   end
 
+  # いいねした投稿の表示
   def collection
     end_user = EndUser.find(params[:id])
     favorites = Favorite.where(end_user_id: end_user.id).pluck(:spot_id)
-    @favorite_spots = Spot.with_attached_spot_images.find(favorites)
+    @favorite_spots = Spot.with_attached_spot_images.order(created_at: :desc).find(favorites)
     @favorite_spots = Kaminari.paginate_array(@favorite_spots).page(params[:page])
   end
 
@@ -27,6 +28,7 @@ class Public::EndUsersController < ApplicationController
     end
   end
 
+  # 退会
   def withdraw
     end_user = current_end_user
     end_user.update(is_deleted: true)
