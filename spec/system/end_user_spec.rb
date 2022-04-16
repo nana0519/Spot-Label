@@ -2,31 +2,22 @@ require "rails_helper"
 
 describe "EndUsersコントローラに関するテスト" do
   let(:end_user) { FactoryBot.create(:end_user) }
+  user1 = FactoryBot.create(:end_user) 
 
-  # before do
-  #   visit new_end_user_session_path
-  #   fill_in "end_user[email]", with: end_user.email
-  #   fill_in "end_user[password]", with: end_user.password
-  #   click_button "ログイン"
-  # end
-  
   before do
-    visit new_end_user_registration_path
-    fill_in "end_user[name]", with: end_user.name
+    visit new_end_user_session_path
     fill_in "end_user[email]", with: end_user.email
     fill_in "end_user[password]", with: end_user.password
-    fill_in "end_user[password_confirmation]", with: end_user.password_confirmation
-    click_button "新規登録"
+    click_button "ログイン"
   end
   
-  it "test" do
-    byebug 
-  end
   # context "[Action]show" do
   #   before do
   #     visit end_user_path(end_user)
   #   end
   #   it "current_end_userの場合は編集ボタンが表示される" do
+  #   end
+  # end
       
 
   context "[Action]edit" do
