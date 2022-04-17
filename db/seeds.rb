@@ -33,8 +33,7 @@ EndUser.create!(
 #                     longitude: "135.35",
 #                     introduction: "[絶品]牛たたきパスタすごくお勧めです！",
 #                     end_user_id: 1)
-                  
-                    
+
 # spot.spot_images.attach(io: File.open('app/assets/images/sample-post1.jpg'), filename: 'sample-post1.jpg')
   
 # spot.save!
