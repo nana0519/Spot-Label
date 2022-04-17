@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "EndUsersコントローラに関するテスト" do
   let(:end_user) { FactoryBot.create(:end_user) }
-  user1 = FactoryBot.create(:end_user) 
+  other_user = FactoryBot.create(:end_user) 
 
   before do
     visit new_end_user_session_path
@@ -11,15 +11,35 @@ describe "EndUsersコントローラに関するテスト" do
     click_button "ログイン"
   end
   
-  # context "[Action]show" do
-  #   before do
-  #     visit end_user_path(end_user)
-  #   end
-  #   it "current_end_userの場合は編集ボタンが表示される" do
-  #   end
-  # end
-      
-
+  context "[Action]show" do
+    it "マイページの場合は編集ボタンが表示される" do
+      visit end_user_path(end_user)
+      expect(page).to have_link "編集"
+    end
+    it "他のユーザーの詳細画面の場合はフォローボタンが表示される" do
+      visit end_user_path(other_user)
+      expect(page).to have_link "follow" || "unfollow"
+    end
+    it "followsリンクが表示されリンクを押すとフォロー一覧画面へ遷移する" do
+      visit end_user_path(end_user)
+      expect(page).to have_link "follows"
+      click_on "follows"
+      expect(page).to have_current_path end_user_followings_path(end_user)
+    end
+    it "followersリンクが表示されリンクを押すとフォロワー一覧画面へ遷移する" do
+      visit end_user_path(end_user)
+      expect(page).to have_link "followers"
+      click_on "followers"
+      expect(page).to have_current_path end_user_followers_path(end_user)
+    end
+    it "favoritesリンクが表示されリンクを押すとお気に入り一覧画面へ遷移する" do
+      visit end_user_path(end_user)
+      expect(page).to have_link "favorites"
+      click_on "favorites"
+      expect(page).to have_current_path collection_end_user_path(end_user)
+    end
+  end
+  
   context "[Action]edit" do
     before do
       visit edit_end_user_path(end_user)
