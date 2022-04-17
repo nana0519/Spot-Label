@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "EndUsersコントローラに関するテスト" do
+describe "end_usersコントローラに関するテスト" do
   let(:end_user) { FactoryBot.create(:end_user) }
   other_user = FactoryBot.create(:end_user) 
 
