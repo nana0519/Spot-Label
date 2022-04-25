@@ -1,5 +1,6 @@
 class Public::CommentsController < ApplicationController
   before_action :authenticate_end_user!
+  before_action :ensure_correct_end_user, only: [:destroy]
   before_action :ensure_guest_user, only: [:create, :destroy]
 
   def create
@@ -25,6 +26,13 @@ class Public::CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:comment)
+  end
+
+  def ensure_correct_end_user
+    comment = Comment.find(params[:id])
+    unless current_end_user == comment.end_user
+      redirect_to spots_path
+    end
   end
 
   def ensure_guest_user
