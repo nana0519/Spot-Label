@@ -44,7 +44,7 @@ class Public::EndUsersController < ApplicationController
   end
 
   def ensure_correct_end_user
-  end_user = EndUser.find(params[:id])
+    end_user = EndUser.find(params[:id])
     unless current_end_user == end_user
       redirect_to spots_path
     end
