@@ -29,9 +29,9 @@ class Public::CommentsController < ApplicationController
   end
 
   def ensure_correct_end_user
-    spot = Spot.find(params[:id])
-    unless current_end_user == spot.end_user
-      redirect_to spot_params
+    comment = Comment.find(params[:id])
+    unless current_end_user == comment.end_user
+      redirect_to spots_path
     end
   end
 
