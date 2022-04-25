@@ -1,5 +1,6 @@
 class Public::EndUsersController < ApplicationController
   before_action :authenticate_end_user!
+  before_action :ensure_correct_end_user, only: [:edit, :update]
   before_action :ensure_guest_user, only: [:edit, :withdraw]
 
   def show
@@ -40,6 +41,13 @@ class Public::EndUsersController < ApplicationController
 
   def end_user_params
     params.require(:end_user).permit(:name, :email, :introduction, :profile_image)
+  end
+
+  def ensure_correct_end_user
+  end_user = EndUser.find(params[:id])
+    unless current_end_user == end_user
+      redirect_to spots_path
+    end
   end
 
   def ensure_guest_user

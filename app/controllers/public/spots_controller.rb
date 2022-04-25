@@ -1,5 +1,6 @@
 class Public::SpotsController < ApplicationController
   before_action :authenticate_end_user!
+  before_action :ensure_correct_end_user, only: [:edit, :update, :destroy]
   before_action :ensure_guest_user, only: [:new, :edit]
 
   def new
@@ -87,6 +88,13 @@ class Public::SpotsController < ApplicationController
   
   def address_params
     params.require(:spot).permit(:address)
+  end
+
+  def ensure_correct_end_user
+    spot = Spot.find(params[:id])
+    unless current_end_user == spot.end_user
+      redirect_to spots_path
+    end
   end
 
   def ensure_guest_user
